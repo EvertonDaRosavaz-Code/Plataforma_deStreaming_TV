@@ -33,6 +33,7 @@ nav {
   position: relative;
   width: 100vw;
   height: 8vh;
+  
 }
 
 .logo-site
@@ -238,7 +239,6 @@ nav {
   background-color: #9147FF;
   width: 30vw;
   height: calc(100%);
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -287,7 +287,7 @@ nav {
 
 /*Conteiner de Streamers seguidos*/
 .StreamersSeguidos{
-  border: solid 1px red;
+  /*border: solid 1px red;*/
   padding-top: 5px;
   display: flex;
   flex-direction: column;
@@ -317,24 +317,31 @@ nav {
 
 
 .StreamersSeguidos ul{
- /* border: solid 1px green;*/
-  height: calc(90% - 40px);
+  /*border: solid 1px green;*/
+  height: calc(90% - 40px); /*Altura total do conteiner*/
   padding: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap:2.5%;
+  overflow: hidden;
+  overflow-y: visible;
 }
+
+ul::-webkit-scrollbar{
+  background-color: transparent;
+  width: 1px;
+}
+
 
 
 /*Conteiner de cada Streamer*/
 .StreamersSeguidos ul li {
- /* border: solid 1px yellow;*/
+  /*border: solid 1px yellow;*/
   padding-left: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 50px;
   gap: 3px;
 }
 .StreamersSeguidos ul li:hover 
@@ -409,10 +416,57 @@ nav {
 
 /*Recomendações Streamers*/
 .recomendacoesStreamers{
-  border: solid 1px blue;
+  /*border: solid 2px rgb(0, 234, 255);*/
   height: 40%;
+  display: flex;
+  flex-direction: column;
+  width: 325px;
+  overflow: hidden;
 }
 
+.ListRecomendacoes::-webkit-scrollbar{
+  background-color: transparent;
+  width: 1px;
+}
+
+.recomendacoesStreamers > span:nth-child(1) {
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 325px;
+  height: 10%;
+  color: white;
+  /*border: solid 1px red;*/
+}
+
+.ListRecomendacoes{
+ /* border:  solid 1px yellow;*/
+  height: calc(90% - 10%);
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  overflow: hidden;
+  overflow-y: visible;
+}
+
+.ListRecomendacoes li{
+ /* border: solid 1px;*/
+  padding-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  gap: 3px;
+}
+
+.ListRecomendacoes li:hover 
+{
+  background-color: var(--colorHoverStreamgin);
+  cursor: pointer;
+}
 
 
 

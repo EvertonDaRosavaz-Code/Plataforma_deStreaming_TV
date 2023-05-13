@@ -5,14 +5,27 @@ let conteiner_img                  = document.getElementById('conteiner-img');
 let HeaderSeguindo                 = document.getElementById('headerSeguidos');
 let conteinerDeListaStreamers      = document.getElementById('ListDeStreamer');
 
-let TextBtnMostrarMais             = document.getElementById('TextBtnMostrarMais');
+
+let headerRecomendacoes            = document.getElementById('HeaderRecomendacoes');
 
 const streamers = [
     {name:'alanzoka', nameGame:'Zelda', Numlive:14953, picture:'../img/alan.png'},
     {name:'Jukes', nameGame:'League of Legends', Numlive:1200 ,   picture:'../img/jukes.png'},
-    {name:'XANDAOOGOD', nameGame:'League of Legends', Numlive:200 ,   picture:'../img/XANDAOOGOD.png'}
+    {name:'XANDAOOGOD', nameGame:'League of Legends', Numlive:200 ,   picture:'../img/XANDAOOGOD.png'},
+    {name:'tioorochitwitch', nameGame:'Só na conversa', Numlive:9272 ,   picture:'../img/tioorochitwitch.png'},
+    {name:'yulla', nameGame:'Só na conversa', Numlive:1200 ,   picture:'../img/yulla.png'},
+    {name:'Baiano', nameGame:'League of Legends', Numlive:1200 ,   picture:'../img/Baiano.png'},
+    {name:'nicklink', nameGame:'League of Legends', Numlive:12800 ,   picture:'../img/nicklink.png'}
 ];
 
+const recomendacoes = [
+    {name:'Yoda', nameGame:'League of Legends', Numlive:1493, picture:'../img/Yoda.png'},
+    {name:'ervadraminha', nameGame:'League of Legends', Numlive:953, picture:'../img/ervadraminha.png'},
+    {name:'chelsia', nameGame:'League of Legends', Numlive:93, picture:'../img/chelsia.png'},
+    {name:'nicklink', nameGame:'League of Legends', Numlive:12800 ,   picture:'../img/nicklink.png'},
+    {name:'XANDAOOGOD', nameGame:'League of Legends', Numlive:200 ,   picture:'../img/XANDAOOGOD.png'},
+    {name:'tioorochitwitch', nameGame:'Só na conversa', Numlive:9272 ,   picture:'../img/tioorochitwitch.png'}
+]
 
 function CreateElementStreamers(picture, name = '', nameGame = '', NumLive = ''){
    
@@ -82,19 +95,21 @@ function CreateElementStreamers(picture, name = '', nameGame = '', NumLive = '')
     }
     //Fazer o retorno de toda essa estrutura;
    
-   conteinerDeListaStreamers.appendChild(li)
+   return li;
 }
 
 for(let dates of streamers){
-     CreateElementStreamers(dates.picture, dates.name, dates.nameGame, dates.Numlive );
+    conteinerDeListaStreamers.appendChild(CreateElementStreamers(dates.picture, dates.name, dates.nameGame, dates.Numlive ))
+}
+
+let conteinerRecomendacoes = document.getElementById('ListRecomendacoes');
+for(let dates of recomendacoes){    
+    conteinerRecomendacoes.appendChild(CreateElementStreamers(dates.picture, dates.name, dates.nameGame, dates.Numlive))
 }
 
 
-
 // Está função é a que vai diminuir e aumentar o menu
-document.getElementById('conteiner-img').onclick = ()=>{
-    let conteinerDescriStreamer = document.getElementById('conteinerDescriStreamer');
-    let conteinerDescriLive     = document.getElementById('conteinerDescriLive');             
+document.getElementById('conteiner-img').onclick = ()=>{            
     conteinerMenu.classList.toggle('diminuir');
    
    if(!conteinerMenu.classList.contains('diminuir')){
@@ -106,7 +121,9 @@ document.getElementById('conteiner-img').onclick = ()=>{
     TitleHeader.style.display = 'flex';
     HeaderSeguindo.style.display = 'flex';
    
-    TextBtnMostrarMais.style.display = 'flex'
+   
+    headerRecomendacoes.style.display = 'flex';
+
    }else{
     // Aqui ira diminuir
     conteiner_img.style.marginTop = '5px'
@@ -119,14 +136,10 @@ document.getElementById('conteiner-img').onclick = ()=>{
     TitleHeader.style.display = 'none';
     HeaderSeguindo.style.display = 'none';
   
-    TextBtnMostrarMais.style.display = 'none'
+    
+    headerRecomendacoes.style.display = 'none';
    }
 }
-
-
-
-
-
 
 //Configurar nomes da barra de menu que ultrapassam 15 caracteres
 let nameGame = document.getElementById('NameGameStreamer');
@@ -135,3 +148,7 @@ let maxLenght = 15;
 if(nameGame.innerHTML.length > maxLenght ){
     nameGame.innerHTML = nameGame.innerHTML.substring(0, maxLenght) + '...'
 }
+
+
+
+

@@ -24,7 +24,8 @@ const recomendacoes = [
     {name:'chelsia', nameGame:'League of Legends', Numlive:93, picture:'../img/chelsia.png'},
     {name:'nicklink', nameGame:'League of Legends', Numlive:12800 ,   picture:'../img/nicklink.png'},
     {name:'XANDAOOGOD', nameGame:'League of Legends', Numlive:200 ,   picture:'../img/XANDAOOGOD.png'},
-    {name:'tioorochitwitch', nameGame:'Só na conversa', Numlive:9272 ,   picture:'../img/tioorochitwitch.png'}
+    {name:'tioorochitwitch', nameGame:'Só na conversa', Numlive:9272 ,   picture:'../img/tioorochitwitch.png'},
+    {name:'mahsh', nameGame:'Só na conversa', Numlive:9272 ,   picture:'../img/mahsh.png'}
 ]
 
 function CreateElementStreamers(picture, name = '', nameGame = '', NumLive = ''){
@@ -98,10 +99,12 @@ function CreateElementStreamers(picture, name = '', nameGame = '', NumLive = '')
    return li;
 }
 
+//Preencher o conteiner com a array de objetos
 for(let dates of streamers){
     conteinerDeListaStreamers.appendChild(CreateElementStreamers(dates.picture, dates.name, dates.nameGame, dates.Numlive ))
 }
 
+//Preencher o conteiner com a array de objetos
 let conteinerRecomendacoes = document.getElementById('ListRecomendacoes');
 for(let dates of recomendacoes){    
     conteinerRecomendacoes.appendChild(CreateElementStreamers(dates.picture, dates.name, dates.nameGame, dates.Numlive))
@@ -111,7 +114,7 @@ for(let dates of recomendacoes){
 // Está função é a que vai diminuir e aumentar o menu
 document.getElementById('conteiner-img').onclick = ()=>{            
     conteinerMenu.classList.toggle('diminuir');
-   
+    //Se diminuir(que possui 75px) não existir
    if(!conteinerMenu.classList.contains('diminuir')){
     //Aqui ir aumentar
     conteiner_img.innerHTML = 
@@ -120,14 +123,11 @@ document.getElementById('conteiner-img').onclick = ()=>{
     '</svg>';
     TitleHeader.style.display = 'flex';
     HeaderSeguindo.style.display = 'flex';
-   
-   
     headerRecomendacoes.style.display = 'flex';
 
    }else{
     // Aqui ira diminuir
-    conteiner_img.style.marginTop = '5px'
-    
+    conteiner_img.style.marginTop = '5px'  
     conteinerMenu.style.transition = '.5s ease';
     conteiner_img.innerHTML = 
     '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-right" viewBox="0 0 16 16">'+
@@ -135,9 +135,8 @@ document.getElementById('conteiner-img').onclick = ()=>{
     '</svg>';
     TitleHeader.style.display = 'none';
     HeaderSeguindo.style.display = 'none';
-  
-    
     headerRecomendacoes.style.display = 'none';
+    
    }
 }
 
@@ -151,4 +150,34 @@ if(nameGame.innerHTML.length > maxLenght ){
 
 
 
+const headerSeguindo = document.getElementById("headerSeguidos");
 
+// Adiciona evento onclick para exibir e ocultar a caixa de filtro
+headerSeguindo.onclick = (event) => {
+  event.stopPropagation(); // Previne o evento de se propagar para outros elementos
+  const caixaFiltro = `
+    <div class="caixaDeFiltro" id="caixaDeFiltro">
+      <input type="button" value="Filtrar em ordem alfabética">
+      <input type="button" value="Filtrar em ordem de espectadores">
+    </div>
+  `;
+  const getChild = document.getElementById("caixaDeFiltro");
+
+  if (!getChild) {
+    // Se a caixa de filtro não existir, adiciona no headerSeguindo
+    headerSeguindo.insertAdjacentHTML("beforeend", caixaFiltro);
+
+    // Adiciona evento onclick para esconder a caixa de filtro caso o usuário clique em outro lugar da página
+    document.addEventListener("click", (event) => {
+      const caixaFiltro = document.getElementById("caixaDeFiltro");
+      if (caixaFiltro && !caixaFiltro.contains(event.target)) {
+        caixaFiltro.remove();
+      }
+    });
+  } else {
+    // Se a caixa de filtro existir, remove
+    getChild.remove();
+  }
+};
+
+  

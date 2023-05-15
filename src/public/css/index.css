@@ -51,6 +51,7 @@ nav {
   display: flex;
   align-items: center;
   color: white;
+  font-size: 1vw;
 }
 
 
@@ -246,7 +247,7 @@ nav {
 }
 
 .diminuir{
-  width: 5vw;
+  width: 75px;
 }
 
 .conteinerHeader{
@@ -476,4 +477,48 @@ ul::-webkit-scrollbar{
 .displayStreamers{
   background-color: #390882b3;
   width: 100%;
+  overflow: hidden;
+  overflow-y: visible;
+}
+
+
+.conteinerSlideShow{
+  border: solid rebeccapurple;
+  height: 45%;
+}
+
+.conteinerLives{
+  border: solid red;
+  height: 100%;
+}
+
+
+@media screen and (max-width:1230px) {
+  .menu-lateral{
+    width: 75px;
+  }
+  .headerSeguidos{
+    display: none;
+  }
+  .conteinerHeader
+  {
+    display: none;
+  }
+
+  #HeaderRecomendacoes{
+    display: none;
+  }
+}
+
+
+/*Caixa de filtro de Streamers*/
+
+.caixaDeFiltro {
+  position: absolute;
+  padding: 10px;
+  border: solid 1px;
+  z-index: 99999;
+  background-color: var(--colorHoverStreamgin);
+  transform: translateX(230px);
+  transition:  0.5s ease;
 }

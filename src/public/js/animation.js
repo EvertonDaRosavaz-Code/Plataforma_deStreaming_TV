@@ -4,114 +4,9 @@ let TitleHeader                    = document.getElementById('TitleHeader');
 let conteiner_img                  = document.getElementById('conteiner-img');
 let HeaderSeguindo                 = document.getElementById('headerSeguidos');
 let conteinerDeListaStreamers      = document.getElementById('ListDeStreamer');
-
-
 let headerRecomendacoes            = document.getElementById('HeaderRecomendacoes');
 
-const streamers = [
-    {name:'alanzoka', nameGame:'Zelda', Numlive:14953, picture:'../img/alan.png'},
-    {name:'Jukes', nameGame:'League of Legends', Numlive:1200 ,   picture:'../img/jukes.png'},
-    {name:'XANDAOOGOD', nameGame:'League of Legends', Numlive:200 ,   picture:'../img/XANDAOOGOD.png'},
-    {name:'tioorochitwitch', nameGame:'Só na conversa', Numlive:9272 ,   picture:'../img/tioorochitwitch.png'},
-    {name:'yulla', nameGame:'Só na conversa', Numlive:1200 ,   picture:'../img/yulla.png'},
-    {name:'Baiano', nameGame:'League of Legends', Numlive:1200 ,   picture:'../img/Baiano.png'},
-    {name:'nicklink', nameGame:'League of Legends', Numlive:12800 ,   picture:'../img/nicklink.png'}
-];
-
-const recomendacoes = [
-    {name:'Yoda', nameGame:'League of Legends', Numlive:1493, picture:'../img/Yoda.png'},
-    {name:'ervadraminha', nameGame:'League of Legends', Numlive:953, picture:'../img/ervadraminha.png'},
-    {name:'chelsia', nameGame:'League of Legends', Numlive:93, picture:'../img/chelsia.png'},
-    {name:'nicklink', nameGame:'League of Legends', Numlive:12800 ,   picture:'../img/nicklink.png'},
-    {name:'XANDAOOGOD', nameGame:'League of Legends', Numlive:200 ,   picture:'../img/XANDAOOGOD.png'},
-    {name:'tioorochitwitch', nameGame:'Só na conversa', Numlive:9272 ,   picture:'../img/tioorochitwitch.png'},
-    {name:'mahsh', nameGame:'Só na conversa', Numlive:9272 ,   picture:'../img/mahsh.png'}
-]
-
-function CreateElementStreamers(picture, name = '', nameGame = '', NumLive = ''){
-   
-    //Criar elementos
-    let li =  document.createElement('li');
-        let DivAvatarStreamer = document.createElement('div');
-        let img  = document.createElement('img')
-        let DivDescriStreamer = document.createElement('div');
-            let spanNameStreamer  = document.createElement('span');
-            let spanNameGameStreamer = document.createElement('span');
-        let DivDescreLive = document.createElement('div');
-            let DivBollRed = document.createElement('div');
-            let spanNumLive = document.createElement('span');
-
-    //DescriStreamer recebe como filhos name e nameGame
-    DivDescriStreamer.appendChild(spanNameStreamer);
-    DivDescriStreamer.appendChild(spanNameGameStreamer);
-
-    //Descri Livre recebe como filhos Divbolinha e NumLive
-    DivDescreLive.appendChild(DivBollRed);
-    DivDescreLive.appendChild(spanNumLive);
-    //DivAvatar recebe img
-    DivAvatarStreamer.appendChild(img);
-    //li recebe Div Avatar
-    li.appendChild(DivAvatarStreamer);
-    //li recebe os conteiners DivDescri e DivDescreLive
-    li.appendChild(DivDescriStreamer);
-    li.appendChild(DivDescreLive);
-
-
-    /*Por suas respectivas classes para cada elemento para usar em CSS*/
-    DivAvatarStreamer.className = 'conteinerAvatarStreamer';
-    DivDescriStreamer.className = 'conteinerDescriStreamer';
-        spanNameStreamer.className = 'spanNameStreamer';
-        spanNameGameStreamer.className = 'spanNameGameStreamer';
-    DivDescreLive.className = 'conteinerDescriive';
-        DivBollRed.className = 'bolinhaLive';
-        spanNumLive.className = 'numLive';
-
-    /*Aqui ficaram os IDs*/
-    spanNameGameStreamer.setAttribute('id', 'NameGameStreamer')
-    spanNumLive.setAttribute('id', 'NumLive')
-    DivDescriStreamer.setAttribute('id', 'conteinerDescriStreamer')
-    DivDescreLive.setAttribute('id', 'conteinerDescriLive')
-    
-    /*Por valores em cada conteiner*/
-    img.setAttribute('src', `${picture}`);
-    spanNameStreamer.textContent = `${name}`;
-    spanNameGameStreamer.textContent = `${nameGame}`;
-    spanNumLive.textContent  = `${NumLive}`
-
-    /*Condições*/ 
-    if(NumLive > 999){
-        let newNumLive = (NumLive/1000).toFixed(1).toLocaleString('pt-BR') + 'mil';
-        spanNumLive.textContent = newNumLive
-    }
-
-    if(NumLive > 999999){
-        let newNumLive = (NumLive/1000000).toFixed(1).toLocaleString('pt-BR') + 'M';
-        spanNumLive.textContent = newNumLive
-    }
-
-
-    if(NumLive > 999999999){
-        let newNumLive = (NumLive/1000000000).toFixed(1).toLocaleString('pt-BR') + 'B';
-        spanNumLive.textContent = newNumLive
-    }
-    //Fazer o retorno de toda essa estrutura;
-   
-   return li;
-}
-
-//Preencher o conteiner com a array de objetos
-for(let dates of streamers){
-    conteinerDeListaStreamers.appendChild(CreateElementStreamers(dates.picture, dates.name, dates.nameGame, dates.Numlive ))
-}
-
-//Preencher o conteiner com a array de objetos
-let conteinerRecomendacoes = document.getElementById('ListRecomendacoes');
-for(let dates of recomendacoes){    
-    conteinerRecomendacoes.appendChild(CreateElementStreamers(dates.picture, dates.name, dates.nameGame, dates.Numlive))
-}
-
-
-// Está função é a que vai diminuir e aumentar o menu
+  // Está função é a que vai diminuir e aumentar o menu
 document.getElementById('conteiner-img').onclick = ()=>{            
     conteinerMenu.classList.toggle('diminuir');
     //Se diminuir(que possui 75px) não existir
@@ -136,29 +31,21 @@ document.getElementById('conteiner-img').onclick = ()=>{
     TitleHeader.style.display = 'none';
     HeaderSeguindo.style.display = 'none';
     headerRecomendacoes.style.display = 'none';
-    
+    conteinerSvg.style.display = 'none'
    }
 }
 
-//Configurar nomes da barra de menu que ultrapassam 15 caracteres
-let nameGame = document.getElementById('NameGameStreamer');
-let maxLenght = 15;
-
-if(nameGame.innerHTML.length > maxLenght ){
-    nameGame.innerHTML = nameGame.innerHTML.substring(0, maxLenght) + '...'
-}
 
 
 
 const headerSeguindo = document.getElementById("headerSeguidos");
-
 // Adiciona evento onclick para exibir e ocultar a caixa de filtro
 headerSeguindo.onclick = (event) => {
   event.stopPropagation(); // Previne o evento de se propagar para outros elementos
   const caixaFiltro = `
     <div class="caixaDeFiltro" id="caixaDeFiltro">
-      <input type="button" value="Filtrar em ordem alfabética">
-      <input type="button" value="Filtrar em ordem de espectadores">
+      <input class="buttonFiltro" id="FiltroAlfabetico" type="button" value="Filtrar em ordem alfabética">
+      <input class="buttonFiltro" id="FiltroEspectadores" type="button" value="Filtrar em ordem de espectadores">
     </div>
   `;
   const getChild = document.getElementById("caixaDeFiltro");
@@ -178,6 +65,26 @@ headerSeguindo.onclick = (event) => {
     // Se a caixa de filtro existir, remove
     getChild.remove();
   }
+
 };
 
-  
+
+function CrateElementsIfNotFollows(){
+
+  const box = 
+  `
+    <div class = "conteinerIfNotFallows" id="conteinerIfNotFallows">
+        <h2>Siga para acompanhar seus Streamings favoritos</h2>
+        <img src="../svg/appreciation-animate.svg">
+    </div>
+  `
+
+
+  return box;
+}
+conteinerMenu.innerHTML += CrateElementsIfNotFollows()
+
+let conteinerSvg = document.getElementById('conteinerIfNotFallows')
+
+
+

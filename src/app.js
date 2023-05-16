@@ -4,6 +4,9 @@ const app     = express();
 const path    = require('path');
 const router  = require('./router');
 
+
+
+require('dotenv').config();
 //Registrar motor ejs ao express
 app.engine('ejs', require('ejs').renderFile);
 //Definir qual mecanismos de views, ejs.
@@ -23,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public'), {
   }
 }));
 
-
+console.log(process.env.TOKEN);
+console.log(process.env.CLIENT_ID);
 app.use(express.json());
 module.exports = app

@@ -9,13 +9,14 @@
     <title>Streaming.tv</title>
 </head>
 <body>
+   
     <header>
         <nav>
             <div class="logo-site">Streaming TV</div>
             <div class="input-wrapper">
                 <div>
                     <input type="text" autocomplete="on" id="ValueInput" maxlength="50">
-                    <button>
+                    <button id="BtnSearch">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                         </svg>
@@ -63,7 +64,27 @@
                     <div class="recomendacoesStreamers">
                         <span id="HeaderRecomendacoes">Canais recomendados</span>
                         <ul class="ListRecomendacoes" id="ListRecomendacoes">
+                       
+                            <% for(let i = 0; i < streamer.length; i++){%>        
+                                <li id="conteinerDoStreamer"> 
+                                    <div class="conteinerAvatarStreamer">
+                                        <img src="<%= streamer[i].picture %>" alt="avatar-streamers">
+                                    </div>
 
+                                    <div class="conteinerDescriStreamer">
+                                        <span class="spanNameStreamer"><%= streamer[i].nome %></span>
+                                        <span class="spanNameGameStreamer" id="NameGameStreamer">
+                                            <%= streamer[i].nameGame %>
+                                        </span>
+                                    </div>
+
+                                    <div class="conteinerDescriive">
+                                        <div class="bolinhaLive"></div>
+                                        <span class="numLive"><%= streamer[i].numEspectadore %></span>
+                                    </div>
+                                    
+                                </li>
+                            <%}%> 
                         </ul>
                     </div>
 
@@ -76,8 +97,7 @@
                <div class="conteinerLives"></div>
             </section>
     </section>
-
     <script src="/js/animation.js" ></script>
-    <script src="/js/index.js"></script>
+    
 </body>
 </html>

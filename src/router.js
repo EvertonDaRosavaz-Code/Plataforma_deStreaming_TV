@@ -1,15 +1,13 @@
 
 const router = require('express').Router();
-const axios  = require('axios');
 const options = {
     headers: {
-        Authorization: `Bearer ${process.env.TOKEN}`,
-        'Client-Id' : process.env.CLIENT_ID
+        Authorization: "Bearer ",
+        'Client-Id' : ''
     }
 }
 
-let numStreamers = 6
-const API_URL = 'https://api.twitch.tv/helix';
+
 let Streamers = [];
 
 let picture;
@@ -17,82 +15,73 @@ let nome;
 let nameGame;
 let numEspectadore;
 
+// Parametros da url
+const queryParms = new URLSearchParams ({
+    language: 'pt',
+    first: 6,
+    sort: 'viewers'
+}).toString()
+
+
 //Buscar Streamers mais vistos ao vivos e enviar ao index
 async function GetTopStreamers () {
-    Streamers = []
-    //Parametros da chamada API com no maximo 5 streamers mais visto agora
-    const queryParms = new URLSearchParams ({
-        language: 'pt',
-        first: numStreamers,
-        sort: 'viewers'
-    }).toString()
+    
 
-    const url = `${API_URL}/streams?${queryParms}`;
-    const response = await axios.get(url, options);
+    let url = `https://api.twitch.tv/helix/streams?${queryParms}`
+    const response = await fetch(url, options);
     const data = await response.json();
-    
-  
-    
-    for(let date of data.data){
-        const id = date.user_id;
+   
 
-        const userUrl = `https://api.twitch.tv/helix/users?id=${id}`;
-        const streamUrl = `https://api.twitch.tv/helix/streams?user_login=${date.user_login}`;
-
-
-        await axios.get(userUrl, options).then((response)=> response.json().then((dados)=> {
-            picture = dados['data'][0]. profile_image_url;
-            nome = dados['data'][0].display_name;
-        }));
-
-        await axios.get(streamUrl, options).then((response) => response.json().then((dados) => {
-            nameGame = dados['data'][0].game_name;
-            numEspectadore = dados['data'][0].viewer_count;
-            
-            if(numEspectadore > 999){
-                let newNumLive = (numEspectadore/1000).toFixed(1).toLocaleString('pt-BR') + 'mil';
-                numEspectadore = newNumLive
-            }
-            if(numEspectadore> 999999){
-                let newNumLive = (numEspectadore/1000000).toFixed(1).toLocaleString('pt-BR') + 'M';
-                spanNumLive.textContent = newNumLive
-            }
+    for(let dates of data.data){
         
+        const reponseName = await fetch(`https://api.twitch.tv/helix/users?login=${dates.user_name}`, options)
+        const dateName = await reponseName.json();
         
-            if(numEspectadore > 999999999){
-                let newNumLive = (numEspectadore/1000000000).toFixed(1).toLocaleString('pt-BR') + 'B';
-                spanNumLive.textContent = newNumLive
-            }
+        nome            = dates.user_name;
+        nameGame        = dates.game_name;
+        numEspectadore  = dates.viewer_count;
+        picture         = dateName.data[0].profile_image_url;
 
 
-        }));
-    
-        //Construir objeto para enviar ao Front
+        if(numEspectadore > 999){
+            numEspectadore = (numEspectadore/1000).toFixed(1).toLocaleString('pt-BR') + 'mil'
+        }
+        if(numEspectadore > 999999){
+            numEspectadore = (numEspectadore/1000000).toFixed(1).toLocaleString('pt-BR') + 'M'
+        }
+        if(numEspectadore >  999999999){
+            numEspectadore = (numEspectadore/1000000000).toFixed(1).toLocaleString('pt-BR') + 'B'
+        }
+
         Streamers.push({
-            nome: nome,
-            picture: picture,
+            picture:picture,
+            nome:nome,
             nameGame:nameGame,
             numEspectadore:numEspectadore
         });
-        
+    
     }
 
-    return Streamers;
-   
+
+    return Streamers
     
 }
 
 
-router.get('/', async (req ,res)=>{
-   try{
-    const streamer = await GetTopStreamers();
-    res.status(200).render('index', {streamer});
-   }catch(e){
-        // Renederizar para uma pagina de erro
-        console.log('Error ' + e);
-   }
-});
 
+
+
+
+router.get('/', async (req, res) => {
+    try {
+      const streamer = await GetTopStreamers();
+      res.status(200).render('index', {streamer});
+    } catch (e) {
+      console.log('Error: ' + e);
+      res.status(500).render('error', { message: 'Ocorreu um erro' });
+    }
+  });
+  
 
 
 

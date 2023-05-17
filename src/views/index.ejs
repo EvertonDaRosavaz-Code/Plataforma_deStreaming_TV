@@ -64,40 +64,46 @@
                     <div class="recomendacoesStreamers">
                         <span id="HeaderRecomendacoes">Canais recomendados</span>
                         <ul class="ListRecomendacoes" id="ListRecomendacoes">
-                       
-                            <% for(let i = 0; i < streamer.length; i++){%>        
-                                <li id="conteinerDoStreamer"> 
-                                    <div class="conteinerAvatarStreamer">
-                                        <img src="<%= streamer[i].picture %>" alt="avatar-streamers">
-                                    </div>
+                            <% const streamerSet = new Set();
 
+                            streamer.forEach(streamer => {
+                              const { nome } = streamer;
+                              if (!streamerSet.has(nome)) {
+                                streamerSet.add(nome);
+                            %>
+                              <li>
+                                    <div class="conteinerAvatarStreamer">
+                                        <img src="<%= streamer.picture %>" alt="avatar-streamers">
+                                    </div>
+                                
                                     <div class="conteinerDescriStreamer">
-                                        <span class="spanNameStreamer"><%= streamer[i].nome %></span>
+                                        <span class="spanNameStreamer"><%= streamer.nome %></span>
                                         <span class="spanNameGameStreamer" id="NameGameStreamer">
-                                            <%= streamer[i].nameGame %>
+                                            <%= streamer.nameGame %>
                                         </span>
                                     </div>
-
+                                
                                     <div class="conteinerDescriive">
                                         <div class="bolinhaLive"></div>
-                                        <span class="numLive"><%= streamer[i].numEspectadore %></span>
+                                        <span class="numLive"><%= streamer.numEspectadore %></span>
                                     </div>
-                                    
-                                </li>
-                            <%}%> 
+                              </li>
+                            <% }
+                            }) %>
+                            
                         </ul>
                     </div>
-
             </div>
             <!--Fim lateral-->
-
-            
             <section class="displayStreamers">
                <div class="conteinerSlideShow"></div>
-               <div class="conteinerLives"></div>
+               <div class="conteinerLives">
+          
+                
+               </div>
             </section>
     </section>
     <script src="/js/animation.js" ></script>
-    
+    <script src="/js/SearchStreamers.js" ></script>
 </body>
 </html>

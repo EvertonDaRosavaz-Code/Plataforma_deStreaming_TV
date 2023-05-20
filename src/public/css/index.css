@@ -25,458 +25,6 @@ body{
   --FontTextMenu:10pt;
 }
 
-nav {
-  display: flex;
-  background-color: var(--backGround);
-  align-items: center;
-  justify-content: space-between;
-  position: relative;
-  width: 100vw;
-  height: 8vh;
-  
-}
-
-.logo-site
-{
-  height: 100%;
-  width: 15vw;
-  margin-left: 15px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  background: url('../img/analytics.png');
-  background-position: right;
-  background-size: 3vw;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  color: white;
-  font-size: 1vw;
-}
-
-
-.input-wrapper{
-  height: 90%;
-  width: 30vw;
-}
-
-.input-wrapper input{
-  width: 100%;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  border: none;
-  padding-left: 25px;
-  height:80%;
-  position: relative;
-}
-
-
-.input-wrapper textarea:focus, input:focus{
-  outline: none;
-  box-shadow: 0,0,0,0;
-}
-
-.input-wrapper div{
-  border: solid var(--colorbackgroundConteinerSearch) ;
-  background-color: var(--colorbackgroundConteinerSearch);
-
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-bottom: none;
-}
-
-.input-wrapper button svg{
-  color: white;  
-}
-
-.input-wrapper button{
-  background-color: var(--colorButtons);
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: calc(80% + 3px);
-  width: 15%;
-  cursor: pointer;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  padding: 1px;
-}
-
-.input-wrapper button:hover{
-  background-color: var(--buttonColorHover);
-}
-.input-wrapper button span{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.input-wrapper div{
-  height: 5vh;
-}
-
-.input-wrapper button span i {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5vw;
-}
-
-.TaskList {
-  border: solid;
-  margin: 0px;
-  width: calc(30vw - 5px);
-  border-color: var(--colorbackgroundConteinerSearch);
-  background-color: var(--colorbackgroundConteinerSearch);
-  padding: 0px;
-  border-top: none;
-  border-bottom-left-radius: 5px;
-  border-bottom-right-radius: 5px;
-  display: flex ;
-  flex-direction: column;
-  height: 0vh;
-  overflow: hidden;
-  overflow-y: visible;
-}
-
-.divMain {
-  display: flex !important;
-  justify-content: start !important;
-  align-items: center !important;
-  padding-left: 5px !important; 
-  gap: 15px !important;
-  width: 98% !important;
-  height: 50px !important;
-  min-height: 49px !important ;
-  max-height: 50px !important;
-
-  cursor: pointer !important;
-}
-
-
-.divIMG {
-  border-radius: 5px !important;
-  width: 30px !important;
-  height: 30px !important;
-  max-height: 40px;
-}
-.divIMG img {
-  height:100%;
-  width: 100%;
-  border-radius: 5px ;
-}
-
-
-.nameStreaming {
-  color: white ;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-}
-
-.conteinerChecked{
-  height: 100% !important;
-}
-
-.checked{
-  height: 20px !important;
-  width: 20px !important;
-  background-color: var(--colorStremin);
-  border: solid 2px var(--colorStremin);
-  border-radius: 50%;
-}
-
-
-
-.buttons{
-  padding-right: 5px;
-}
-
-.buttons button{
-  border:  none;
-  cursor: pointer;
-  border-radius: 2px;
-  padding: 5px;
-  text-transform: uppercase;
-}
-
-
-.buttons button:nth-child(1){
-  background-color: white;  
-}
-
-.buttons button:nth-child(2){
-  background-color: var(--colorStremin);
-}
-
-.buttons button:nth-child(1):hover{
-  background-color: rgba(255, 244, 244, 0.778);  
-}
-
-.buttons button:nth-child(2):hover{
-  background-color: var(--colorHoverStreamgin);
-}
-
-.TaskList a{
-  text-decoration: none;
-}
-
-.section-fundo{
-  height: calc(100vh - 8vh);
-  background-color:rgb(28, 24, 24);
-  display: flex;
-}
-
-
-
-/*Menu de Streamers*/
-.menu-lateral{
-  background-color: #9147FF;
-  width: 30vw;
-  height: calc(100%);
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  overflow: hidden;
-}
-
-.diminuir{
-  width: 75px;
-}
-
-.conteinerHeader{
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: #802ff9;
-}
-.conteinerHeader h3{
-  color: white;
-}
-
-.conteiner-img{
-  background-repeat: no-repeat;
-  cursor: pointer;
-  height:30px;
-  width: 30px;
-  padding: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-
-.conteiner-img svg{
-  height:100%;
-  width: 100%;
-  color: white;
-}
-
-
-.conteiner-img:hover
-{
-  border: solid 1px;
-  border-radius: .5rem;
-  background-color: #2c0f58;
-}
-
-/*Conteiner de Streamers seguidos*/
-.StreamersSeguidos{
-  border: solid 1px red;
-  padding-top: 5px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  height: 40%;
-  width: 325px;
-
-
-  display: none;
-}
-
-.headerSeguidos{ 
-  border: solid 1px yellow;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  color: white;
-  height: 40px;
-  cursor: pointer;
-}
-
-.headerSeguidos:hover
-{
-  background-color: var(--colorHoverStreamgin);
-}
-
-.headerSeguidos span{
-  text-transform: uppercase;
-}
-
-
-
-.StreamersSeguidos ul{
-  border: solid 1px green;
-  height: calc(90% - 40px); /*Altura total do conteiner*/
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap:2.5%;
-  overflow: hidden;
-  overflow-y: visible;
-}
-
-ul::-webkit-scrollbar{
-  background-color: transparent;
-  width: 1px;
-}
-
-
-
-/*Conteiner de cada Streamer*/
-.StreamersSeguidos ul li {
-  /*border: solid 1px yellow;*/
-  padding-left: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-}
-.StreamersSeguidos ul li:hover 
-{
-  background-color: var(--colorHoverStreamgin);
-  cursor: pointer;
-}
-
-
-.conteinerAvatarStreamer{ /*conteiner Avatar do streamer*/
-  width:60px;
-  height: 50px;
-}
-
-.conteinerAvatarStreamer img
-{
-  height: 100%;
-  width: 100%;
-  border-radius: 1.5rem;
-}
-
-.conteinerDescriStreamer{ /*Conteiner onde fica o name e o name do game*/
-  /*border: solid green 1px;*/
-  width: 70%;
-  height: 90%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
-.conteinerDescriStreamer span {
-  font-size:var(--FontTextMenu);
-}
-
-.conteinerDescriive{  /*Conteiner onde vai ficar bolinha de ao vivo e num de ouvintes*/
- /*border:  solid blue 1px;*/
-  width: 30%;
-  height: 90%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.numLive{
-  /*border: solid 1px #802ff9;*/
-  height:30%;
-  width: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size:var(--FontTextMenu);
-}
-
-.bolinhaLive{
-  border: solid 1px #eb0400;
-  height:0.5rem;
-  width: 0.5rem;
-  border-radius: 100%;
-  background-color: #eb0400;
-}
-
-
-
-.TextBtnMostrarMais{
-  color: #2c0f58;
-  font-size: 10pt;
-  cursor: pointer;
-  text-decoration: underline;
-  padding-left: 5px;
-}
-
-
-/*Recomendações Streamers*/
-.recomendacoesStreamers{
-  border: solid 1px rgb(0, 234, 255);
-  height: 40%;
-  display: flex;
-  flex-direction: column;
-  width: 325px;
-  
-  gap: 5px;
-  padding-top: 5px;
-}
-
-.ListRecomendacoes::-webkit-scrollbar{
-  background-color: transparent;
-  width: 1px;
-}
-
-.recomendacoesStreamers > span:nth-child(1) {
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 325px;
-  height: 10%;
-  color: white;
-  border: solid 1px red;
-}
-
-.ListRecomendacoes{
- border:  solid 1px yellow;
-  height: calc(90% - 10%);
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  overflow: hidden;
-  overflow-y: visible;
-  height: auto;
-}
-
-.ListRecomendacoes li{
- /* border: solid 1px;*/
-  padding-left: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 50px;
-  gap: 3px;
-}
-
-.ListRecomendacoes li:hover 
-{
-  background-color: var(--colorHoverStreamgin);
-  cursor: pointer;
-}
-
-
 
 
 
@@ -486,6 +34,7 @@ ul::-webkit-scrollbar{
   width: 100%;
   overflow: hidden;
   overflow-y: visible;
+  border: solid ;
 }
 
 
@@ -494,82 +43,121 @@ ul::-webkit-scrollbar{
   height: 45%;
 }
 
-.conteinerLives{
-  border: solid red;
+
+
+/*SLide show da biblioteca Swiper*/
+.swiper {
+  width: 100%;
   height: 100%;
 }
 
-
-@media screen and (max-width:1230px) {
-  .menu-lateral{
-    width: 75px;
-  }
-  .headerSeguidos{
-    display: none;
-  }
-  .conteinerHeader
-  {
-    display: none;
-  }
-
-  #HeaderRecomendacoes{
-    display: none;
-  }
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.swiper-slide .box{
+  border: solid red;
+  height: 100%;
 
-/*Caixa de filtro de Streamers*/
-.caixaDeFiltro {
+
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.autoplay-progress {
   position: absolute;
-  padding: 10px;
-  border: solid 1px;
-  z-index: 99999;
-  background-color: var(--colorHoverStreamgin);
-  transform: translateX(230px);
-  transition:  0.5s ease;
-
+  right: 16px;
+  bottom: 16px;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
+  color: var(--swiper-theme-color);
+
+  display: none;
+}
+
+.autoplay-progress svg {
+  --progress: 0;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  stroke-width: 4px;
+  stroke: var(--swiper-theme-color);
+  fill: none;
+  stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+  stroke-dasharray: 125.6;
+  transform: rotate(-90deg);
+
+  display: none;
+}
+
+
+
+
+
+
+/*Estilização do conteiner de recomendações de Live e Game*/
+.conteinerLives{
+  /*border: solid red;*/
+  height: 100%;
+  padding: 10px;
+}
+
+.conteinerLives .recomendacoesDeGames{
+  height: auto;
+  width: 100%;
+}
+
+.recomendacoesDeGames .ListaDeGames{
+  border: solid 1px #9147FF;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  flex: start ;
+}
+
+.recomendacoesDeGames .box-games{
+  border: solid 1px yellow;
+  display: flex;
   flex-direction: column;
-  gap: 5px;
-}
-
-.buttonFiltro{
-  border: none;
+  height: 50%;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  border-radius: .2rem;
-  text-transform: uppercase;
-  padding: 5px;
-  background-color: var(--colorButtons);
 }
 
-.buttonFiltro:hover
-{
-  background-color: var(--buttonColorHover);
+.box-games:hover{
+  -webkit-box-shadow: -8px 4px 0px 1px rgba(8,105,250,1);
+  -moz-box-shadow: -8px 4px 0px 1px rgba(8,105,250,1);
+  box-shadow: -8px 4px 0px 1px rgba(8,105,250,1);
+  transform: translate(5px, -5px);
+  transition: .1s ease-in-out;
 }
 
-/*Estilisar conteiner se não estiver seguindo*/
-.conteinerIfNotFallows{
-  border: solid 1px red;
-  padding-left: 5px;
-}
 
-.conteinerIfNotFallows h2 {
+.recomendacoesDeGames h2{
   color: white;
-  font-size: 2vw;
-  text-transform: uppercase;
-  text-align: start;
-}
-.conteinerIfNotFallows img {
-  animation: flutuar 2s infinite ease-in-out ;
-}
-@keyframes flutuar {
-    0%{
-      transform: translateY(0px);
-    }
+  }
 
-    50%{
-      transform: translateY(10px);
-    }
+
+.box-games img{
+  height: 100%;
 }
+

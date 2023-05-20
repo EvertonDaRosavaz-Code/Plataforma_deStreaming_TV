@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="/css/index.css">
     <link rel="stylesheet" href="/css/menuAndHeader.css">
     <link rel="shortcut icon" href="img/analytics.png" type="image/x-icon">
-    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
     <title>Streaming</title>
 </head>
 <body>
@@ -19,6 +18,7 @@
                 <span>Streaming</span>
                 <a href="http://localhost:4001/directory">Procurar</a>
             </div>
+            
             <div class="input-wrapper">
                 <div>
                     <input type="text" autocomplete="on" id="ValueInput" maxlength="50">
@@ -115,81 +115,11 @@
             <!--Fim  menu lateral-->
 
             <section class="displayStreamers">
-               <div class="conteinerSlideShow">
-                    <!-- Swiper -->
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="box">
-                                    Slide 1
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="box">
-                                    Slide 2
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="box">
-                                    Slide 2
-                                </div>
-                            </div>
-
-                       
-                        </div>
-
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination"></div>
-                        <div class="autoplay-progress">
-                        
-                            <svg viewBox="0 0 48 48">
-                            <circle cx="24" cy="24" r="20"></circle>
-                        </svg>
-                        <span></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="conteinerLives">
-                   <div class="recomendacoesDeGames">
-                        <h2>Jogos que achamos que você possa gostar</h2>
-                        <div class="ListaDeGames">
-                            <% const topGameSet = new Set(); %>
-
-                        <% TopGames.forEach((topgames)=>{ %>
-                          <% const {nome} = topgames %>
-                             <% if(!topGameSet.has(nome)){ %>
-                               <% topGameSet.add(nome) %>
-                               
-                               <div class="box-games">
-                                <img src="<%= topgames.image%>" alt="icon-game">
-                                <span><%= topgames.nome%> </span>
-                                <span><%= topgames.views%> espectadores</span>
-                            </div>
-
-
-                             <%}%>
-
-
-                       <% }) %>
-                            
-                          
-                         
-    
-                       
-                        </div>
-                            
-                    </div>
-                   </div>
-
-                </div>
+               
+               
             </section>
     </section>
     <script src="/js/animation.js"></script>
     <script src="/js/SearchStreamers.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script type="module" src="/js/swiper.js"></script>
 </body>
 </html>

@@ -6,13 +6,16 @@ const router  = require('./router');
 
 
 
+
 require('dotenv').config();
+
 //Registrar motor ejs ao express
 app.engine('ejs', require('ejs').renderFile);
 //Definir qual mecanismos de views, ejs.
 app.set('view engine', 'ejs');
 //Definir o caminho absoleto ate a pasta views
 app.set('views', path.join(__dirname, 'views'));
+
 // Usar o middleware
 app.use(router);
 

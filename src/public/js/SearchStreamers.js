@@ -1,6 +1,7 @@
 let input = document.getElementById('ValueInput');
 let BtnSearch = document.getElementById('BtnSearch')
 
+//Houve um problema aqui
 async function getData() {
     try {
       const response = await fetch('http://localhost:4001/');
@@ -13,7 +14,7 @@ async function getData() {
 }
   
   // Chame a função getData() para buscar os dados
-  getData();
+ 
   
 
 

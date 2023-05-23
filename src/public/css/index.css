@@ -10,7 +10,6 @@ body{
   padding: 0;
   box-sizing: border-box;
   height: 100vh;
-  width: 100vw;
 }
 
 
@@ -23,6 +22,7 @@ body{
   --buttonColorHover:#18181bca;
   --colorHoverStreamgin:#9560e5c1;
   --FontTextMenu:10pt;
+  --bacGoundMenu:#1f1f23;
 }
 
 
@@ -30,16 +30,17 @@ body{
 
 /*seção de estremers*/
 .displayStreamers{
-  background-color: #390882b3;
+  background-color: #0e0e10;
   width: 100%;
+  height: 100%;
   overflow: hidden;
   overflow-y: visible;
-  border: solid ;
 }
 
 
+
 .conteinerSlideShow{
-  border: solid rebeccapurple;
+ /* border: solid rebeccapurple;*/
   height: 45%;
 }
 
@@ -47,7 +48,7 @@ body{
 
 /*SLide show da biblioteca Swiper*/
 .swiper {
-  width: 100%;
+  width: 90%;
   height: 100%;
 }
 
@@ -61,7 +62,7 @@ body{
 }
 
 .swiper-slide .box{
-  border: solid red;
+ /* border: solid red;*/
   height: 100%;
 
 
@@ -114,50 +115,180 @@ body{
 
 
 /*Estilização do conteiner de recomendações de Live e Game*/
-.conteinerLives{
-  /*border: solid red;*/
-  height: 100%;
-  padding: 10px;
+#conteiner{
+  display: flex ;
+  width:100%;
+  align-items: center;
+  justify-content: space-around;
+  gap: 5px;
+  margin: 5px;
+
+ /* border: solid 1px blueviolet ;*/
 }
 
-.conteinerLives .recomendacoesDeGames{
-  height: auto;
-  width: 100%;
-}
-
-.recomendacoesDeGames .ListaDeGames{
-  border: solid 1px #9147FF;
+.descricao{
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  flex: start ;
-}
-
-.recomendacoesDeGames .box-games{
-  border: solid 1px yellow;
-  display: flex;
-  flex-direction: column;
-  height: 50%;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-}
-
-.box-games:hover{
-  -webkit-box-shadow: -8px 4px 0px 1px rgba(8,105,250,1);
-  -moz-box-shadow: -8px 4px 0px 1px rgba(8,105,250,1);
-  box-shadow: -8px 4px 0px 1px rgba(8,105,250,1);
-  transform: translate(5px, -5px);
-  transition: .1s ease-in-out;
-}
-
-
-.recomendacoesDeGames h2{
+  text-align: center;
+  flex-direction: column;
   color: white;
+
+ /* border: solid red;*/
+}
+
+
+.descricao span:nth-child(1){
+  font-size: 1vw;
+}
+
+.descricao span:nth-child(2){
+  font-size: .9vw;
+  text-transform: uppercase;
+}
+
+.titulo {
+  text-align: start;
+  color: white;
+  padding-left: 10px;
+}
+
+.imagem{
+  cursor: pointer;
+  border-radius: 5px;
+
+ /* border: solid 1px yellow;*/
+}
+
+.imagem:hover{
+  -webkit-box-shadow: -8px 7px 0px 0px rgba(33,60,235,0.7);
+  -moz-box-shadow: -8px 7px 0px 0px rgba(33,60,235,0.7);
+  box-shadow: -8px 7px 0px 0px rgba(33,60,235,0.7);
+  transition: .2s ease-in-out;
+  transform: translate(5px, -5px);
+}
+
+
+
+.imagem img {
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.card{
+  width: 250px;
+  height: 300px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+
+ /* border: solid 1px red;*/
+}
+
+
+
+/*Conteiner ao vivo*/
+.conteinerLivesAoVivo{
+ /* border: solid red;*/
+  height:auto;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.conteinerLivesAoVivo h2{
+  color: white;
+  padding-left: 10px;
+}
+
+.conteinerLivesAoVivo .conteinerDeLives{
+ /* border: solid green;*/
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 30rem;
+  gap: 15px;
+}
+
+.conteinerLivesAoVivo .conteinerDeLives .card{
+/*  border: solid violet;*/
+  width: 100%;
+  height: 90%;
+}
+
+.conteinerLivesAoVivo .conteinerDeLives .card .card-img{
+  /*border: solid yellow;*/
+  width: 100%;
+  height: 80%;
+  border-radius: 10px;
+}
+
+
+.conteinerLivesAoVivo .conteinerDeLives .card .card-img img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+ }
+
+
+
+
+.conteinerLivesAoVivo .conteinerDeLives .card .card-descri{
+ /* border: solid red;*/
+  height: 50%;
+  width: 100%;
+  display: flex;
+  padding-top: 5px;
+}
+
+
+.conteinerLivesAoVivo .conteinerDeLives .card .card-descri .icon-Streamer{
+ /* border: solid turquoise;*/
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  
+}
+.conteinerLivesAoVivo .conteinerDeLives .card .card-descri .icon-Streamer img{
+  width: 100%;
+  height:100%;
+  object-fit: cover;
+  border-radius: 100%;
+}
+.conteinerLivesAoVivo .conteinerDeLives .card .card-descri .conteinerDescriStreamer{
+ /* border: solid chartreuse;*/
+  width: 90%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  padding-left: 10px;
+}
+
+.conteinerLivesAoVivo .conteinerDeLives .card .card-descri .conteinerDescriStreamer span{
+  text-align: start;
+  font-size: 1vw;
+ /* border: solid white;*/
+  width: auto;
+}
+
+@media screen and (max-width:1203px) {
+  #conteiner{
+    flex-wrap: wrap;
+    justify-content: start;
+    
+  }
+  .descricao span:nth-child(1){
+    font-size: 12px;
   }
 
+  .descricao span:nth-child(2){
+    font-size: 10px;
+  }
 
-.box-games img{
-  height: 100%;
 }
+
 

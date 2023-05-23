@@ -12,7 +12,7 @@
 </head>
 <body>
    <!--Inicio da cabeçalho-->
-    <header>
+
         <nav>
             <div class="logo-site">
                 <img src="../img/analytics.png" alt="">
@@ -44,7 +44,9 @@
             </div>
 
         </nav>
-    </header>
+   
+
+    
   <!--fim da cabeçalho-->
     <section class="section-fundo">
 
@@ -77,11 +79,15 @@
                         <span id="HeaderRecomendacoes">Canais recomendados</span>
                         <ul class="ListRecomendacoes" id="ListRecomendacoes">
                             <% const streamerSet = new Set();
-
                             streamer.forEach(streamer => {
                               const { nome } = streamer;
+                              let {nameGame} = streamer;
                               if (!streamerSet.has(nome)) {
                                 streamerSet.add(nome);
+                                let newNome = nameGame;
+                                if(nameGame.length > 15){
+                                    newNome = nameGame.substring(0, 15) + '...';
+                                }
                             %>
                               <li>
                                     <div class="conteinerAvatarStreamer">
@@ -91,7 +97,7 @@
                                     <div class="conteinerDescriStreamer">
                                         <span class="spanNameStreamer"><%= streamer.nome %></span>
                                         <span class="spanNameGameStreamer" id="NameGameStreamer">
-                                            <%= streamer.nameGame %>
+                                            <%= newNome %>
                                         </span>
                                     </div>
                                 
@@ -133,7 +139,7 @@
 
                             <div class="swiper-slide">
                                 <div class="box">
-                                    Slide 2
+                                    Slide 3
                                 </div>
                             </div>
 
@@ -152,40 +158,83 @@
                         </div>
                     </div>
                 </div>
-                <div class="conteinerLives">
-                   <div class="recomendacoesDeGames">
-                        <h2>Jogos que achamos que você possa gostar</h2>
-                        <div class="ListaDeGames">
-                            <% const topGameSet = new Set(); %>
-
-                        <% TopGames.forEach((topgames)=>{ %>
-                          <% const {nome} = topgames %>
-                             <% if(!topGameSet.has(nome)){ %>
-                               <% topGameSet.add(nome) %>
-                               
-                               <div class="box-games">
-                                <img src="<%= topgames.image%>" alt="icon-game">
-                                <span><%= topgames.nome%> </span>
-                                <span><%= topgames.views%> espectadores</span>
+                <!--Conteiner de recomendações-->
+              
+                <div class="recomendacos">
+                    <div class="titulo">
+                        <h2><a href="">Categorias</a> que achamos que você possa gostar</h2>
+                    </div> 
+                
+                    <div id="conteiner">
+                        <% let setGames = new Set()%>
+                        
+                        <% for (let game of TopGames){ %>
+                        <% let nome = game.nome %>
+                        <% if(!setGames.has(nome)){%>
+                            <% setGames.add(nome) %>
+                
+                            <div class="card">
+                                <div class="imagem">
+                                        <img src="<%= game.image %>" alt="">
+                                </div>
+                        
+                                <div class="descricao">
+                                        <span><%= game.nome %></span>
+                                        <span><%= game.views %> espectadores</span> 
+                                </div>      
                             </div>
-
-
-                             <%}%>
-
-
-                       <% }) %>
-                            
-                          
-                         
-    
-                       
-                        </div>
-                            
+                        <% } %>
+                        <%} %>
                     </div>
-                   </div>
+                </div>
 
+                <!--Fim do conteiner de recomendações-->
+                <div class="conteinerLivesAoVivo">
+                    <h2><a href="">Canais ao vivo</a> que achamos que possa gostar</h2>
+                    <div class="conteinerDeLives">
+
+                        <%
+                        let setStreamer = new Set();
+                        streamer.slice(0,3).forEach((elemento) => {
+                          let { nome } = elemento;
+                          let {nameGame} = elemento;
+                          let {title} = elemento;
+                          if (!setStreamer.has(nome)) {
+                            setStreamer.add(nome);
+                            let newNome = nameGame;
+                            let newTitle = title
+                            let maxCaracter = 40
+                            if(nameGame.length > maxCaracter){
+                                newNome = nameGame.substring(0, maxCaracter) + '...';
+                            }
+                            if(title.length > maxCaracter){
+                                newTitle = title.substring(0, maxCaracter) + '...';
+                            }
+                      %>
+                      <div class="card">
+                        <div class="card-img">
+                            <img src="<%=elemento.thumbnail_url %>" alt="">
+                        </div>
+                        <div class="card-descri">
+                            <div class="icon-Streamer">
+                                <img src="<%=elemento.picture %>" alt="icon-streamer">
+                            </div>
+                            <div class="conteinerDescriStreamer">
+                                <span class="TitleLive"><a href="#"><%= newTitle  %></a></span>
+                                <span class="name"><%=elemento.nome %></span>
+                                <span class="nomeGame"><%=newNome%>.</span>
+                            </div>
+                    
+                        </div>
+                    </div>
+                      <%
+                          }
+                        });
+                      %>     
+                        </div>
                 </div>
             </section>
+            
     </section>
     <script src="/js/animation.js"></script>
     <script src="/js/SearchStreamers.js"></script>

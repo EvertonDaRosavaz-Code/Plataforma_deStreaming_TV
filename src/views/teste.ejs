@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <title>Document</title>
+</head>
+<body style="background-color: black;"> 
+    
+
+
+<%=TopGames.length%>
+
+
+
+
+
+
+<div class="recomendacos">
+  <div class="titulo">
+      <h2><a href="">Categorias</a> que achamos que você possa gostar</h2>
+  </div> 
+
+  <div id="conteiner">
+      <% let setGames = new Set()%>
+      
+      <% for (let game of TopGames){ %>
+        <% let nome = game.nome %>
+        <% if(!setGames.has(nome)){%>
+             <% setGames.add(nome) %>
+
+             <div class="card">
+              <div class="imagem">
+                      <img src="<%= game.image %>" alt="">
+              </div>
+      
+              <div class="descricao">
+                      <span><%= game.nome %></span>
+                      <span><%= game.views %> espectadores</span> 
+              </div>      
+            </div>
+       <% } %>
+      <%} %>
+  </div>
+</div>
+
+
+</body>
+</html>

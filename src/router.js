@@ -1,10 +1,10 @@
 
-const router = require('express').Router();
-
+const express = require('express');
+const router = express.Router();
 const options = {
     headers: {
-        Authorization: "Bearer ",
-        'Client-Id' : ''
+        Authorization: `Bearer ${process.env.TOKEN}`,
+        'Client-Id' : `${process.env.CLIENT_ID}`
     }
 }
 
@@ -16,20 +16,17 @@ let picture;
 let nome;
 let nameGame;
 let numEspectadore;
-
-// Parametros da url
-const queryParms = new URLSearchParams ({
-    language: 'pt',
-    first: 10,
-    sort: 'viewers'
-}).toString()
+let thumbnail_url;
+let title;
+let widthThub = 440
+let heghtThub = 248
 
 
 //Buscar Streamers mais vistos ao vivos e enviar ao index
 async function GetTopStreamers () {
     
 
-    let url = `https://api.twitch.tv/helix/streams?${queryParms}`
+    let url = `https://api.twitch.tv/helix/streams?language=pt&first=10&sort=viewers}`
     const response = await fetch(url, options);
     const data = await response.json();
    
@@ -44,11 +41,13 @@ async function GetTopStreamers () {
             nome            = dates.user_name;
             nameGame        = dates.game_name;
             numEspectadore  = dates.viewer_count;
+            title           = dates.title;
+            thumbnail_url   = dates.thumbnail_url.replace('{width}', widthThub).replace('{height}', heghtThub);
             
-            //Congirurar os nomes que ultrapassam 10 caracteres, se for substituia metade da string por "..."
-            if(nameGame.length > 15){
-                let newString = nameGame.substring(0, 15)  + '...'
-                nameGame = newString
+
+            if(title.length > 60){
+                let newString = title.substring(0, 60) + '...';
+                title  = newString
             }
         }
 
@@ -70,16 +69,22 @@ async function GetTopStreamers () {
             picture:picture,
             nome:nome,
             nameGame:nameGame,
-            numEspectadore:numEspectadore
+            numEspectadore:numEspectadore,
+            title:title,
+            thumbnail_url:thumbnail_url
         });
     
     }
+    
    
  
   
    return Streamers
     
 }
+
+
+
 
 
 async function SearchStreamer(nomeStreamer) {
@@ -95,7 +100,7 @@ const height = 180;
 
 async function GetTopGames (){
 
-    const response = await fetch(`${API_URL}/games/top?first=7`, options)
+    const response = await fetch(`${API_URL}/games/top?first=6`, options)
     const date = await response.json();
    
 
@@ -157,14 +162,11 @@ router.get('/', async (req, res) => {
       const TopGames = await GetTopGames();
       res.status(200).render('index', {streamer, TopGames});
     } catch (e) {
-      console.log('Error: ' + e);
+      //console.log('Error: ' + e);
       res.status(500).render('error', { message: 'Ocorreu um erro' });
     }
 });
   
-router.get('/:name', (req, res)=>{
-    
-})
 
 
 
@@ -192,25 +194,21 @@ router.get('/directory', async (req, res)=>{
 });
 
   
+router.get('/teste', async  (req, res)=>{
+   // const streamer = await GetTopStreamers();
+    const TopGames = await GetTopGames();
+    res.status(200).render('teste', {TopGames})
+})
 
+
+/*router.get('/:name', (req, res)=>{
+    
+});*/
 
 // Pegar descrições de Games para a rota Directory
-const key  = '';
-const name = 'Valorant';
-
-async function GetDescriGame () {
-    const response  =   await fetch(`https://api.rawg.io/api/games?key=${key}&search=${name}`)
-    const date = await response.json();
-
-    let idGame = date['results'][0]['id'];
-    const responseDescriGame = await fetch(`https://api.rawg.io/api/games/${idGame}?key=${key}`)
-    const dateDescriGame = await responseDescriGame.json();
-
-    //console.log(dateDescriGame);
-}
 
 
-GetDescriGame()
+
 
 
 module.exports = router;

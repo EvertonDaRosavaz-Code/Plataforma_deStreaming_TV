@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 const options = {
     headers: {
-        Authorization: `Bearer ${process.env.TOKEN}`,
-        'Client-Id' : `${process.env.CLIENT_ID}`
+        Authorization: `Bearer `,
+        'Client-Id' : ``
     }
 }
 
@@ -21,7 +21,7 @@ let title;
 let widthThub = 440
 let heghtThub = 248
 
-
+//Funções:
 //Buscar Streamers mais vistos ao vivos e enviar ao index
 async function GetTopStreamers () {
     
@@ -85,8 +85,6 @@ async function GetTopStreamers () {
 
 
 
-
-
 async function SearchStreamer(nomeStreamer) {
     const response = await fetch(`${API_URL}/users?login=${nomeStreamer}`, options);
     const data = await response.json();
@@ -98,6 +96,7 @@ let ObjGame = [];
 const width = 160;
 const height = 180;
 
+//Buscar jogos mais jogados
 async function GetTopGames (){
 
     const response = await fetch(`${API_URL}/games/top?first=6`, options)
@@ -154,21 +153,29 @@ async function GetTopGames (){
 }
 
 
-//Rotas
+
+
+
+
+
+
+//############################
+//Rotas:
 //Principal
 router.get('/', async (req, res) => {
     try {
       const streamer = await GetTopStreamers();
       const TopGames = await GetTopGames();
-      res.status(200).render('index', {streamer, TopGames});
+      res.status(200).render('index', {
+        streamer,
+        TopGames
+    });
     } catch (e) {
       //console.log('Error: ' + e);
       res.status(500).render('error', { message: 'Ocorreu um erro' });
     }
 });
   
-
-
 
 //Rota de pesquisa
 router.get('/search', async (req, res) => {
@@ -194,6 +201,7 @@ router.get('/directory', async (req, res)=>{
 });
 
   
+//Fins de teste
 router.get('/teste', async  (req, res)=>{
    // const streamer = await GetTopStreamers();
     const TopGames = await GetTopGames();
@@ -201,11 +209,12 @@ router.get('/teste', async  (req, res)=>{
 })
 
 
-/*router.get('/:name', (req, res)=>{
-    
-});*/
+router.get('/:name', (req, res)=>{
+    res.render('layoutStreamer')
+});
 
-// Pegar descrições de Games para a rota Directory
+
+
 
 
 

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/menuAndHeader.css">
     <link rel="shortcut icon" href="img/analytics.png" type="image/x-icon">
     <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
     <title>Streaming</title>
 </head>
 <body>
@@ -122,40 +123,40 @@
 
             <section class="displayStreamers">
                <div class="conteinerSlideShow">
-                    <!-- Swiper -->
+                   <!-- Swiper -->
                     <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="box">
-                                    Slide 1
+                        <div class="swiper-wrapper" id="swiper-wrapper">
+
+                            <div data-hash="slide1" class="swiper-slide">
+                                <div id="twitch-embed1" class="conteinerPlayer">
+                                    <div class="playerDescri">
+                                        <div class="conteiner-imgPlayer">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="nameStreamerPlayer"></div>
+                                        <div class="descriStreamerPlayer"></div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="swiper-slide">
-                                <div class="box">
-                                    Slide 2
+                            <div data-hash="slide2" class="swiper-slide">
+                                <div id="twitch-embed2" class="conteinerPlayer">
+                                    <div class="playerDescri">
+                                        <div class="conteiner-imgPlayer">
+                                            <img src="" alt="">
+                                        </div>
+                                        <div class="nameStreamerPlayer"></div>
+                                        <div class="descriStreamerPlayer"></div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="swiper-slide">
-                                <div class="box">
-                                    Slide 3
-                                </div>
-                            </div>
-
-                       
+                            
+                            
                         </div>
-
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                         <div class="swiper-pagination"></div>
-                        <div class="autoplay-progress">
-                        
-                            <svg viewBox="0 0 48 48">
-                            <circle cx="24" cy="24" r="20"></circle>
-                        </svg>
-                        <span></span>
-                        </div>
                     </div>
                 </div>
                 <!--Conteiner de recomendações-->
@@ -195,7 +196,7 @@
 
                         <%
                         let setStreamer = new Set();
-                        streamer.slice(0,3).forEach((elemento) => {
+                        streamer.slice(0,4).forEach((elemento) => {
                           let { nome } = elemento;
                           let {nameGame} = elemento;
                           let {title} = elemento;
@@ -240,5 +241,6 @@
     <script src="/js/SearchStreamers.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script type="module" src="/js/swiper.js"></script>
+    <script src="/js/TopPlayers.js"></script>
 </body>
 </html>

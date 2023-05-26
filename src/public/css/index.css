@@ -47,8 +47,9 @@ body{
 
 
 /*SLide show da biblioteca Swiper*/
+
 .swiper {
-  width: 90%;
+  width: 100%;
   height: 100%;
 }
 
@@ -59,54 +60,31 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  border: solid red ;
+}
+.swiper-slide .conteinerPlayer{
+  border: solid blue;
+  height: 95%;
+  display: flex;
+  
 }
 
-.swiper-slide .box{
- /* border: solid red;*/
+.swiper-slide .conteinerPlayer .playerDescri{
+  border:  solid  yellow;
+  width: 40%;
+}
+
+.swiper-slide .conteinerPlayer iframe{
   height: 100%;
-
-
+  width: 60%;
 }
+
 
 .swiper-slide img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.autoplay-progress {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
-  z-index: 10;
-  width: 48px;
-  height: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  color: var(--swiper-theme-color);
-
-  display: none;
-}
-
-.autoplay-progress svg {
-  --progress: 0;
-  position: absolute;
-  left: 0;
-  top: 0px;
-  z-index: 10;
-  width: 100%;
-  height: 100%;
-  stroke-width: 4px;
-  stroke: var(--swiper-theme-color);
-  fill: none;
-  stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
-  stroke-dasharray: 125.6;
-  transform: rotate(-90deg);
-
-  display: none;
 }
 
 
@@ -161,9 +139,9 @@ body{
 }
 
 .imagem:hover{
-  -webkit-box-shadow: -8px 7px 0px 0px rgba(33,60,235,0.7);
-  -moz-box-shadow: -8px 7px 0px 0px rgba(33,60,235,0.7);
-  box-shadow: -8px 7px 0px 0px rgba(33,60,235,0.7);
+  -webkit-box-shadow: -8px 7px 0px 0px rgba(106, 22, 232, 0.867);
+  -moz-box-shadow: -8px 7px 0px 0px rgba(106, 22, 232, 0.867);
+  box-shadow: -8px 7px 0px 0px rgba(106, 22, 232, 0.867);
   transition: .2s ease-in-out;
   transform: translate(5px, -5px);
 }
@@ -213,7 +191,7 @@ body{
 
 .conteinerLivesAoVivo .conteinerDeLives .card{
 /*  border: solid violet;*/
-  width: 100%;
+  width: 90%;
   height: 90%;
 }
 
@@ -288,6 +266,24 @@ body{
   .descricao span:nth-child(2){
     font-size: 10px;
   }
+  .conteinerLivesAoVivo .conteinerDeLives{
+    flex-wrap: wrap;
+    justify-content: start;
+    border: solid green;
+    height: auto;
+  }
+  .conteinerLivesAoVivo .conteinerDeLives .card{
+    display: flex;
+    justify-content: start;
+    border: solid red;
+  }
+
+  .conteinerLivesAoVivo .conteinerDeLives .card .card-descri{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
 
 }
 

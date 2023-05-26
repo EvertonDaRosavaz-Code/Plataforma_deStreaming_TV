@@ -29,6 +29,6 @@ app.use(express.static(path.join(__dirname, 'public'), {
   }
 }));
 
-console.log(process.env.TOKEN);
+
 app.use(express.json());
 module.exports = app

@@ -56,27 +56,28 @@ body{
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: #18181b;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid red ;
+  /*border: solid red ;*/
 }
 .swiper-slide .conteinerPlayer{
   border: solid blue;
   height: 95%;
   display: flex;
-  
+ 
 }
 
 .swiper-slide .conteinerPlayer .playerDescri{
   border:  solid  yellow;
   width: 40%;
+  background-color: white;
 }
 
 .swiper-slide .conteinerPlayer iframe{
   height: 100%;
-  width: 60%;
+  width: 70%;
 }
 
 

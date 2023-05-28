@@ -11,7 +11,6 @@ window.addEventListener('load', function() {
 
   let localStorageMenu = this.localStorage.getItem('Menufechado');
   if(localStorageMenu === 'true'){
-    console.log('chegou');
     if(!conteinerMenu.classList.contains('diminuir')){
         conteinerMenu.classList.toggle('diminuir');
         diminuir()

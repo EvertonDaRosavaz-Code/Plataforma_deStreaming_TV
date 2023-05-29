@@ -5,7 +5,7 @@ const options = {
   }
 }
 
-let BtnEntrar = document.getElementById('BtnEntrar')
+
 let conteinerDePlayers = document.getElementById('swiper-wrapper');
 let players = [];
 
@@ -56,40 +56,91 @@ class ControllerPlayer {
     this.player1 = null;
     this.player2 = null;
     this.player3 = null;
+    this.player4 = null;
+    this.player5 = null;
+
+    this.createPlayerTwitch1 = false;
+    this.createPlayerTwitch2 = false;
+    this.createPlayerTwitch3 = false;
+    this.createPlayerTwitch4 = false;
+    this.createPlayerTwitch5 = false;
   }
+
+
 
 
   PlayerTwitch1 (options) {
-   this.player1 =  new Twitch.Player(`twitch-embed1`, options);
-  
-
-   return this.player1
+    this.player1 = new Twitch.Player(`twitch-embed1`, options);
   }
 
   PlayerTwitch2 (options) {
-   this.player2  =   new Twitch.Player(`twitch-embed2`, options);    
-
-  
-   return this.player2;
+   this.player2 = new Twitch.Player(`twitch-embed2`, options);
   }
 
   PlayerTwitch3 (options){
-    this.player3  =   new Twitch.Player(`twitch-embed3`, options);    
- 
-    return this.player3;
+    this.player3 = new Twitch.Player(`twitch-embed3`, options);
   }
+
+  PlayerTwitch4 (options){
+    this.player4 = new Twitch.Player(`twitch-embed4`, options);  
+  }
+
+  PlayerTwitch5 (options) {
+    this.player5 = new Twitch.Player(`twitch-embed5`, options);
+  }
+
 
   PauseTwtch (num) {
     if(num == 1){
-      this.player2.pause()
-      this.player3.pause()
+      this.player2 ? this.player2.pause() : '';
+      this.player3 ? this.player3.pause() : '';
+      this.player4 ? this.player4.pause() : '';
+      this.player5 ? this.player5.pause() : '';
+    
+     this.player1.play();
+    }
+
+    if(num == 2){
+      this.player1 ? this.player1.pause() : '';
+      this.player3 ? this.player3.pause() : '';
+      this.player4 ? this.player4.pause() : '';
+      this.player5 ? this.player5.pause() : '';
+
+      this.player2.play();
+    }
+
+    if(num == 3){
+
+      this.player1 ? this.player1.pause(): '';
+      this.player2 ? this.player2.pause(): '';
+      this.player4 ? this.player4.pause(): '';
+      this.player5 ? this.player5.pause(): '';
+
+      this.player3.play();
+    }
+
+    if(num == 4){
+      this.player1 ? this.player1.pause() : '';
+      this.player2 ? this.player2.pause() : '';
+      this.player3 ? this.player3.pause() : '';
+      this.player5 ? this.player5.pause() : '';
+
+      this.player4.play();
+    }
+
+
+    if(num == 5){
+      this.player1 ? this.player1.pause() : '';
+      this.player2 ? this.player2.pause() : '';
+      this.player3 ? this.player3.pause() : '';
+      this.player4 ? this.player4.pause() : '';
+
+      this.player5.play();
     }
   }
 
+
 }
-
-
-
 
 
 let controllerPlayer = new ControllerPlayer();
@@ -97,19 +148,23 @@ let controllerPlayer = new ControllerPlayer();
 async function init() {
   await RunPlayerTwitch();
 
+  if(controllerPlayer.createPlayerTwitch1 == false){
     controllerPlayer.PlayerTwitch1({width:450, height:850, channel:players[0]});
-    controllerPlayer.PlayerTwitch2({width:450, height:850, channel:players[1]});
-    controllerPlayer.PlayerTwitch3({width:450, height:850, channel:players[3]});
+    controllerPlayer.createPlayerTwitch1 = true;
+  }
 
-    new Swiper(".mySwiper", {
+
+  new Swiper(".mySwiper", {
 
      hashNavigation: {
        watchState: true,
      },
+
      pagination: {
        el: ".swiper-pagination",
        clickable: true,
      },
+
      navigation: {
        nextEl: ".swiper-button-next",
        prevEl: ".swiper-button-prev",
@@ -120,8 +175,6 @@ async function init() {
      on:{
       init: function () {
         console.log('Está no Slide 1');
-     
-        controllerPlayer.PauseTwtch(1)
       },
 
        slideChange: function (){
@@ -130,20 +183,35 @@ async function init() {
          
          switch (activeSlideIndex + 1){
              case 1:
-                console.log('Está no Slide 1');
-                controllerPlayer.PauseTwtch(1)
+                controllerPlayer.PauseTwtch(1);
                break;
              case 2:
-               console.log('Está no Slide 2');          
+                if(controllerPlayer.createPlayerTwitch2 == false){
+                  controllerPlayer.PlayerTwitch2({width:450, height:850, channel:players[1]});
+                  controllerPlayer.createPlayerTwitch2 = true;
+                }
+                controllerPlayer.PauseTwtch(2);
                break
               case 3:
-                console.log('Está no Slide 3');
+                if(controllerPlayer.createPlayerTwitch3 == false){
+                  controllerPlayer.PlayerTwitch3({width:450, height:850, channel:players[2]});
+                  controllerPlayer.createPlayerTwitch3  = true;
+                }
+                controllerPlayer.PauseTwtch(3);
                 break
               case 4:
-                console.log('Está no Slide 4');
+                if(controllerPlayer.createPlayerTwitch4 == false){
+                  controllerPlayer.PlayerTwitch4({width:450, height:850, channel:players[3]});
+                  controllerPlayer.createPlayerTwitch4  = true;
+                }
+                controllerPlayer.PauseTwtch(4);
                 break
               case 5:
-                console.log('Está no Slide 5');
+                if(controllerPlayer.createPlayerTwitch5 == false){
+                  controllerPlayer.PlayerTwitch5({width:450, height:850, channel:players[4]});
+                  controllerPlayer.createPlayerTwitch5  = true;
+                }
+                controllerPlayer.PauseTwtch(5);
          }
        }
      }
@@ -152,25 +220,7 @@ async function init() {
 
 }
 
+
+
 init();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

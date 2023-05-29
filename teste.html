@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Troca de Cores Suave</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #6441A4;
+      transition: background-color 1s ease;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+  <script>
+    const colors = ['#6441A4', '#9146FF', '#FF6AC1']; // Cores da Twitch: Roxo, Rosa e Azul
+    let currentColorIndex = 0;
+
+    function changeBackgroundColor() {
+      const body = document.querySelector('body');
+      const nextColorIndex = (currentColorIndex + 1) % colors.length;
+      const currentColor = colors[currentColorIndex];
+      const nextColor = colors[nextColorIndex];
+
+      anime({
+        targets: body,
+        backgroundColor: [currentColor, nextColor],
+        duration: 2000,
+        easing: 'easeInOutQuad',
+        complete: function() {
+          currentColorIndex = nextColorIndex;
+          changeBackgroundColor(); // Chama a função novamente para continuar a troca de cores
+        }
+      });
+    }
+
+    // Inicia a troca de cores ao carregar a página
+    window.addEventListener('load', changeBackgroundColor);
+  </script>
+</body>
+</html>

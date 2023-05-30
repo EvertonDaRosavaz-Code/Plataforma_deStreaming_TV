@@ -200,24 +200,25 @@ router.get('/directory', async (req, res)=>{
       }
 });
 
-  
-//Fins de teste
-router.get('/teste', async  (req, res)=>{
-   // const streamer = await GetTopStreamers();
-    const TopGames = await GetTopGames();
-    res.status(200).render('teste', {TopGames})
-})
 
-
-router.get('/:name', (req, res)=>{
-    res.render('layoutStreamer')
+router.get('/:name', async (req, res)=>{
+    try {
+        const streamer = await GetTopStreamers();
+        const TopGames = await GetTopGames();
+        res.status(200).render('layoutStreamer', {
+          streamer,
+      });
+      } catch (e) {
+        //console.log('Error: ' + e);
+        res.status(500).render('error', { message: 'Ocorreu um erro' });
+      }
 });
 
-
-
-
-
-
-
-
+//Fins de teste
+router.get('/teste', async  (req, res)=>{
+    // const streamer = await GetTopStreamers();
+     const TopGames = await GetTopGames();
+     res.status(200).render('teste', {TopGames})
+ })
+ 
 module.exports = router;

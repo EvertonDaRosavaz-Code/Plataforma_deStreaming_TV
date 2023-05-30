@@ -63,32 +63,39 @@ body{
   /*border: solid red ;*/
 }
 .swiper-slide .conteinerPlayer{
-  border: solid blue;
+  /*border: solid blue;*/
   height: 95%;
   display: flex;
  
 }
 
 .swiper-slide .conteinerPlayer .playerDescri{
-  border:  solid  yellow;
+ /*border:  solid  yellow;*/
   width: 40%;
   background-color: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 20px;
 }
+.swiper-slide .conteinerPlayer .playerDescri .conteinerStreamerPlayer {
+ /* border: solid red;*/
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  height: 160px;
+}
 
 .swiper-slide .conteinerPlayer .playerDescri .conteiner-imgPlayer{
- /*border: solid red 1px;*/
-  width:150px;
-  height: 150px;
-  
+  width:140px;
+  height: 140px;
   border-radius: 50%;
   cursor: pointer;
-  
 }
+
 
 .swiper-slide .conteinerPlayer .playerDescri .conteiner-imgPlayer img {
   width:100%;
@@ -97,28 +104,37 @@ body{
 }
 
 .swiper-slide .conteinerPlayer .playerDescri .nameStreamerPlayer{
-  border: solid springgreen;
+ /* border: solid springgreen;*/
   width: 95%;
-
+  text-align: start;
   color: white;
+}
+.swiper-slide .conteinerPlayer .playerDescri .nameStreamerPlayer span:hover{
+  cursor: pointer;
+  color: #9147FF;
 }
 
 .swiper-slide .conteinerPlayer .playerDescri .descriStreamerPlayer{
-  border:  solid slateblue;
+  /*border:  solid slateblue;*/
   text-align: start;
   font-size: .9vw;
   width: 95%;
   color: white;
+  cursor: pointer;
 }
 
 
 .swiper-slide .conteinerPlayer .playerDescri .nameGamePlayer {
-  border:  solid royalblue;
+ /* border:  solid royalblue;*/
   width: 95%;
   color: white;
+  text-align: start;
 }
 
-
+.swiper-slide .conteinerPlayer .playerDescri .nameGamePlayer span:hover {
+  cursor: pointer;
+  color: #9147FF;
+}
 
 .swiper-slide .conteinerPlayer iframe{
   height: 100%;
@@ -329,8 +345,4 @@ body{
     align-items: center;
     justify-content: center;
   }
-  
-
 }
-
-

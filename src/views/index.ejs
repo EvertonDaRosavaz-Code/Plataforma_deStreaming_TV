@@ -46,8 +46,6 @@
 
         </nav>
    
-
-    
   <!--fim da cabeçalho-->
     <section class="section-fundo">
 
@@ -127,24 +125,8 @@
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper" id="swiper-wrapper">
 
-                   
-
-                            <!-- <div data-hash="slide2" class="swiper-slide">
-                                <div id="twitch-embed2" class="conteinerPlayer">
-                                    <div class="playerDescri">
-                                        <div class="conteiner-imgPlayer">
-                                            <img src="" alt="">
-                                        </div>
-                                        <div class="nameStreamerPlayer"></div>
-                                        <div class="descriStreamerPlayer"></div>
-                                    </div>
-                                </div>
-                            </div> -->
-
-                            
-                            
                         </div>
-                        <div class="swiper-button-next"></div>
+                        <div  class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
                         <div class="swiper-pagination"></div>
                     </div>
@@ -166,7 +148,7 @@
                 
                             <div class="card">
                                 <div class="imagem">
-                                        <img src="<%= game.image %>" alt="">
+                                        <img src="<%= game.image %>" alt="game-image">
                                 </div>
                         
                                 <div class="descricao">
@@ -186,7 +168,7 @@
 
                         <%
                         let setStreamer = new Set();
-                        streamer.slice(0,4).forEach((elemento) => {
+                        streamer.slice(0,3).forEach((elemento) => {
                           let { nome } = elemento;
                           let {nameGame} = elemento;
                           let {title} = elemento;

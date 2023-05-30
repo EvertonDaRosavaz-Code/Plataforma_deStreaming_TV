@@ -32,7 +32,7 @@ function diminuir (){
   HeaderSeguindo.style.display = 'none';
   headerRecomendacoes.style.display = 'none';
   conteinerIfNotFallows.style.display = 'none'
-  
+  conteinerDeListaStreamers.style.border = 'solid red'
   localStorage.setItem('Menufechado', true);
 }
 
@@ -95,8 +95,6 @@ headerSeguindo.onclick = (event) => {
   }
 
 };
-
-
 
 
 

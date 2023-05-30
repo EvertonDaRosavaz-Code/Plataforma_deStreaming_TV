@@ -4,9 +4,123 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!--Menu lateral-->
+    <link rel="stylesheet" href="/css/menuAndHeader.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="shortcut icon" href="img/analytics.png" type="image/x-icon">
+    <title>Streaming</title>
 </head>
 <body>
-    
+  <!--Inicio da cabeçalho-->
+
+  <nav>
+    <div class="logo-site">
+        <img src="../img/analytics.png" alt="">
+        <span>Streaming</span>
+        <a href="http://localhost:4001/directory">Procurar</a>
+    </div>
+    <div class="input-wrapper">
+        <div>
+            <input type="text" autocomplete="on" id="ValueInput" maxlength="50">
+            <button id="BtnSearch">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </button>
+        </div>
+        <ul class="TaskList" id="conteinerStreamers">
+            <!--List Streamers-->
+            <a href="">
+                <div class="img-historic">
+                    <svg width="2rem" height="2rem" viewBox="0 0 20 20"><path d="M5.757 14.243A6 6 0 1 0 5.527 6H7v2H2V3h2v1.708a8 8 0 1 1 .343 10.949l1.414-1.414z"></path><path d="m11 10.414 1.707-1.707-1.414-1.414L9 9.586V14h2v-3.586z"></path></svg>
+                </div>
+                <span>Alkabone</span>
+             </a>
+        </ul>
+    </div> 
+    <div class="buttons">
+        <button id="BtnEntrar"><span>Entrar</span></button>
+        <button><span>Cadastrar-se</span></button>
+    </div>
+
+</nav>
+
+<!--fim da cabeçalho-->
+<section class="section-fundo">
+  <!--Inicio do menu-->
+    <div class="menu-lateral" id="menu-lateral">
+        <div class="conteinerHeader">
+            <h3 id="TitleHeader">Para você</h3>
+            <div class="conteiner-img" id="conteiner-img" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5Z"/>
+                </svg>
+            </div>
+        </div>
+
+        <div class="StreamersSeguidos">
+            <div class="headerSeguidos" id="headerSeguidos">
+                <span >Canais seguidos</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5zm-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5z"/>
+                </svg>
+            </div>
+            <!--Lista de Streaner seguidos-->
+            <ul class="ListDeStreamer" id="ListDeStreamer">
+            <!--Lista de Streamers ira permanecer aqui-->
+            </ul>
+        </div>
+
+
+        <div class="recomendacoesStreamers">
+            <span id="HeaderRecomendacoes">Canais recomendados</span>
+            <ul class="ListRecomendacoes" id="ListRecomendacoes">
+                <% const streamerSet = new Set();
+                streamer.forEach(streamer => {
+                const { nome } = streamer;
+                let {nameGame} = streamer;
+                if (!streamerSet.has(nome)) {
+                    streamerSet.add(nome);
+                    let newNome = nameGame;
+                    if(nameGame.length > 15){
+                        newNome = nameGame.substring(0, 15) + '...';
+                    }
+                %>
+                <li>
+                        <div class="conteinerAvatarStreamer">
+                            <img src="<%= streamer.picture %>" alt="avatar-streamers">
+                        </div>
+                    
+                        <div class="conteinerDescriStreamer">
+                            <span class="spanNameStreamer"><%= streamer.nome %></span>
+                            <span class="spanNameGameStreamer" id="NameGameStreamer">
+                                <%= newNome %>
+                            </span>
+                        </div>
+                    
+                        <div class="conteinerDescriive">
+                            <div class="bolinhaLive"></div>
+                            <span class="numLive"><%= streamer.numEspectadore %></span>
+                        </div>
+                </li>
+                <% }
+                }) %>
+                
+            </ul>
+        </div>
+
+        <!--Este conteiner devera sumir se o usuario tiver algum streamer seguindo-->
+        <div class = "conteinerIfNotFallows" id="conteinerIfNotFallows">
+            <h2>Siga para acompanhar seus Streamings favoritos !</h2>
+            <img src="../svg/appreciation-animate.svg">
+        </div>
+       <!--Fim  menu lateral-->
+        
+
+    </div>
+
+</section>
+
+    <script src="/js/animation.js"></script>
 </body>
 </html>

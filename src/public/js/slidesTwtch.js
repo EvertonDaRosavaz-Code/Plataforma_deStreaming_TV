@@ -6,6 +6,9 @@ const options = {
 }
 
 
+
+
+
 let conteinerDePlayers = document.getElementById('swiper-wrapper');
 
 let players     = [];
@@ -26,11 +29,8 @@ async function RunPlayerTwitch() {
       return element.is_mature === false
     });
 
-
    let arrayDeStreamers = arrayNotMature.slice(0, 5);
-   
-
-
+  
     arrayDeStreamers.forEach((elemento)=>{
       let nameUser = elemento.user_name;
       let name_game = elemento.game_name;
@@ -38,7 +38,6 @@ async function RunPlayerTwitch() {
       nameGame.push(name_game);
     });
 
-    
 
   }
 
@@ -49,34 +48,50 @@ async function RunPlayerTwitch() {
   picture.push(data['data'][0].profile_image_url)
  
  }
+let maxCarracter = 180
+ let newArrayDescri = descriGame.map((elemento)=>{
+    if(elemento.length > maxCarracter){
+      let newDescri = elemento.substring(0, maxCarracter)  + '...'
+      elemento = newDescri
+    }
 
-
+    return elemento
+ })
 
  for(let i = 0; i < 4; i++){
   conteinerDePlayers.innerHTML += 
   `
-  <div data-hash="slide${i + 1}" class="swiper-slide">
-    <div id="twitch-embed${i + 1}" class="conteinerPlayer">
-      <div class="playerDescri">
-        <div class="conteiner-imgPlayer">
-          <img src="${picture[i]}" alt="picture-streamer">
+    <div data-hash="slide${i + 1}" class="swiper-slide">
+      <div id="twitch-embed${i + 1}" class="conteinerPlayer">
+        <div class="playerDescri">
+        <div class = "conteinerStreamerPlayer">
+            <div class="conteiner-imgPlayer">
+              <img src="${picture[i]}" alt="picture-streamer">
+            </div>
+          </div>
+          <div class="descriStreamerPlayer">
+            <span> ${newArrayDescri[i]} </span>
+          </div>
+          <div class="nameGamePlayer">
+            <span> ${nameGame[i]} </span>
+          </div>
+          <div class="nameStreamerPlayer">
+            <span>${players[i]}</span>
+          </div>
         </div>
-        <div class="descriStreamerPlayer">${descriGame[i]}</div>
-        <div class="nameGamePlayer"> ${nameGame[i]}</div>
-        <div class="nameStreamerPlayer">${players[i]}</div>
       </div>
     </div>
-  </div>
-`
-
+  `
  }
-
- console.log(players);
- console.log(nameGame);
- console.log(descriGame);
- console.log(picture);
 }
 
+const Arraycores = [
+  "#FF5252", "#FF4081", "#E040FB", "#7C4DFF", "#536DFE", "#448AFF", "#40C4FF", "#18FFFF", "#64FFDA", "#69F0AE",
+  "#B2FF59", "#EEFF41", "#FFFF00", "#FFD740", "#FFAB40", "#FF6E40", "#FF1744", "#D50000", "#F44336", "#E91E63",
+  "#9C27B0", "#673AB7", "#3F51B5", "#2196F3", "#03A9F4", "#00BCD4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39",
+  "#FFEB3B", "#FFC107", "#FF9800", "#FF5722", "#795548", "#9E9E9E", "#607D8B", "#8C9EFF", "#9FA8DA", "#A5D6A7",
+  "#C5E1A5", "#E6EE9C", "#FFF59D", "#FFE082", "#FFCC80", "#FFAB91", "#BCAAA4", "#EEEEEE", "#BDBDBD", "#78909C"
+];
 
 
 
@@ -101,9 +116,6 @@ class ControllerPlayer {
 
   PlayerTwitch1 (options) {
     this.player1 = new Twitch.Player(`twitch-embed1`, options);
-    setTimeout(() => {
-      this.player1.setVolume(0.5); // Definir volume para 0.5 (50%)
-    }, 2000); 
   }
 
   PlayerTwitch2 (options) {
@@ -178,9 +190,34 @@ class ControllerPlayer {
 
 let controllerPlayer = new ControllerPlayer();
 
+let arrayColorForConteinerIMG = [];
 async function init() {
   await RunPlayerTwitch();
-  
+
+  for(let i = 0; i < 4; i++){
+    let random = Math.floor(Math.random() * Arraycores.length);
+    arrayColorForConteinerIMG.push(Arraycores[random]);
+  }
+
+  let conteinrIMGPlayer = document.querySelectorAll('.conteiner-imgPlayer');
+
+  conteinrIMGPlayer.forEach((elemento, indice)=>{
+    elemento.style.border = `solid ${arrayColorForConteinerIMG[indice]} 2px`
+  })
+
+  conteinrIMGPlayer.forEach((elemento, indice)=>{
+    elemento.addEventListener('mouseover', ()=>{
+      elemento.style.border = `solid ${arrayColorForConteinerIMG[indice]} 5px`
+    });
+
+    elemento.addEventListener('mouseout', ()=>{
+      elemento.style.border = `solid ${arrayColorForConteinerIMG[indice]} 2px`
+    })
+  })
+
+
+
+
   new Swiper(".mySwiper", {
 
      hashNavigation: {
@@ -254,6 +291,9 @@ async function init() {
 }
 
 
+ 
+
+
+
 
 init();
-

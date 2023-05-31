@@ -8,6 +8,8 @@ const options = {
     }
 }
 
+
+
 const API_URL =  "https://api.twitch.tv/helix";
 
 let Streamers = [];

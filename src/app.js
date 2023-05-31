@@ -4,10 +4,7 @@ const app     = express();
 const path    = require('path');
 const router  = require('./router');
 
-
-
-
-require('dotenv').config();
+require('dotenv').config()
 
 //Registrar motor ejs ao express
 app.engine('ejs', require('ejs').renderFile);

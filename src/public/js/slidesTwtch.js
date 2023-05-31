@@ -62,6 +62,9 @@ let maxCarracter = 180
   conteinerDePlayers.innerHTML += 
   `
     <div data-hash="slide${i + 1}" class="swiper-slide">
+    <div class="load" id="load">	
+      <div class="c-loader"></div>
+    </div>
       <div id="twitch-embed${i + 1}" class="conteinerPlayer">
         <div class="playerDescri">
         <div class = "conteinerStreamerPlayer">
@@ -96,6 +99,7 @@ const Arraycores = [
 
 
 class ControllerPlayer {
+  
 
   constructor () {
     this.player1 = null;
@@ -110,9 +114,6 @@ class ControllerPlayer {
     this.createPlayerTwitch4 = false;
     this.createPlayerTwitch5 = false;
   }
-
-
-
 
   PlayerTwitch1 (options) {
     this.player1 = new Twitch.Player(`twitch-embed1`, options);
@@ -194,6 +195,8 @@ let arrayColorForConteinerIMG = [];
 async function init() {
   await RunPlayerTwitch();
 
+  let load = document.querySelectorAll('#load')
+
   for(let i = 0; i < 4; i++){
     let random = Math.floor(Math.random() * Arraycores.length);
     arrayColorForConteinerIMG.push(Arraycores[random]);
@@ -242,6 +245,12 @@ async function init() {
         if(controllerPlayer.createPlayerTwitch1 == false){
           controllerPlayer.PlayerTwitch1({width:450, height:850, channel:players[0]});
           controllerPlayer.createPlayerTwitch1 = true;
+
+          controllerPlayer.player1.addEventListener(Twitch.Player.READY, ()=>{
+            console.log('Carregado player 1');
+            load[0].style.display = 'none'
+          });
+
         }
 
         
@@ -259,6 +268,12 @@ async function init() {
                 if(controllerPlayer.createPlayerTwitch2 == false){
                   controllerPlayer.PlayerTwitch2({width:450, height:850, channel:players[1]});
                   controllerPlayer.createPlayerTwitch2 = true;
+
+                  controllerPlayer.player2.addEventListener(Twitch.Player.READY, ()=>{
+                    console.log('Carregado player 1');
+                    load[1].style.display = 'none'
+                  });
+
                 }
                 controllerPlayer.PauseTwtch(2);
                break
@@ -266,6 +281,13 @@ async function init() {
                 if(controllerPlayer.createPlayerTwitch3 == false){
                   controllerPlayer.PlayerTwitch3({width:450, height:850, channel:players[2]});
                   controllerPlayer.createPlayerTwitch3  = true;
+
+                  controllerPlayer.player3.addEventListener(Twitch.Player.READY, ()=>{
+                    console.log('Carregado player 1');
+                    load[2].style.display = 'none'
+                  });
+
+
                 }
                 controllerPlayer.PauseTwtch(3);
                 break
@@ -273,6 +295,12 @@ async function init() {
                 if(controllerPlayer.createPlayerTwitch4 == false){
                   controllerPlayer.PlayerTwitch4({width:450, height:850, channel:players[3]});
                   controllerPlayer.createPlayerTwitch4  = true;
+
+                  controllerPlayer.player4.addEventListener(Twitch.Player.READY, ()=>{
+                    console.log('Carregado player 1');
+                    load[3].style.display = 'none'
+                  });
+
                 }
                 controllerPlayer.PauseTwtch(4);
                 break
@@ -280,6 +308,13 @@ async function init() {
                 if(controllerPlayer.createPlayerTwitch5 == false){
                   controllerPlayer.PlayerTwitch5({width:450, height:850, channel:players[4]});
                   controllerPlayer.createPlayerTwitch5  = true;
+
+                  controllerPlayer.player5.addEventListener(Twitch.Player.READY, ()=>{
+                    console.log('Carregado player 1');
+                    load[4].style.display = 'none'
+                  });
+
+
                 }
                 controllerPlayer.PauseTwtch(5);
          }

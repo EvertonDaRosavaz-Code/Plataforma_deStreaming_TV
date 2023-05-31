@@ -154,8 +154,37 @@ async function GetTopGames (){
 
 
 
+ 
+async function getLives(game){
+    let width = 300;
+    let height = 300;
+    let PlayerStreamer = [];
+    const url  = await fetch(`${API_URL}/games?name=${game}`, options);
+    const response = await url.json();
 
+    let getId = response['data'][0].id
+    
+    const url_2 = await fetch(`${API_URL}/streams?game_id=${getId}`, options);
+    const response2 = await url_2.json();
 
+    if(Array.isArray(response2['data'])){
+        for(let data of response2['data']){
+            let thumbnail_url = data.thumbnail_url.replace('{width}', width).replace('{height}', height);
+            let nomeLive = data.title;
+            let nameStreamer  = data.user_name;
+            let name_game = data.game_name;
+
+            PlayerStreamer.push({
+                thumbnail_url:thumbnail_url,
+                nomeLive:nomeLive,
+                nameStreamer:nameStreamer,
+                name_game:name_game
+            })
+        }
+
+        return PlayerStreamer;
+    }
+}
 
 
 
@@ -175,7 +204,22 @@ router.get('/', async (req, res) => {
       res.status(500).render('error', { message: 'Ocorreu um erro' });
     }
 });
+
+//Rota Diretorio
+router.get('/directory', async (req, res)=>{
+    try {
+        const streamer = await GetTopStreamers();
+        res.status(200).render('directory', {streamer});
+      } catch (e) {
+        console.log('Error: ' + e);
+        res.status(500).render('error', { message: 'Ocorreu um erro' });
+      }
+});
   
+
+
+
+
 
 //Rota de pesquisa
 router.get('/search', async (req, res) => {
@@ -188,18 +232,17 @@ router.get('/search', async (req, res) => {
     }
 });
   
-
-//Rota Diretorio
-router.get('/directory', async (req, res)=>{
+router.get('/directory/game/:namegame', async (req, res)=> {
+    let nameGame = req.params.namegame;
+    const streamer = await GetTopStreamers();
+    const getLive = await getLives(nameGame);
     try {
-        const streamer = await GetTopStreamers();
-        res.status(200).render('directory', {streamer});
-      } catch (e) {
-        console.log('Error: ' + e);
-        res.status(500).render('error', { message: 'Ocorreu um erro' });
-      }
+        //res.status(200).render('layoutGames', {streamer});
+       
+    } catch (e) {
+        //res.status(500).render('error', { message: 'Ocorreu um erro' });
+    }
 });
-
 
 router.get('/:name', async (req, res)=>{
     try {
@@ -214,11 +257,5 @@ router.get('/:name', async (req, res)=>{
       }
 });
 
-//Fins de teste
-router.get('/teste', async  (req, res)=>{
-    // const streamer = await GetTopStreamers();
-     const TopGames = await GetTopGames();
-     res.status(200).render('teste', {TopGames})
- })
- 
+
 module.exports = router;

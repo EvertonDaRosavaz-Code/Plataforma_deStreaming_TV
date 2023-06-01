@@ -154,9 +154,7 @@ async function GetTopGames (){
     return ObjGame
 }
 
-
-
- 
+//Pegar live por parametro nome
 async function getLives(game){
     let width = 300;
     let height = 300;
@@ -188,6 +186,44 @@ async function getLives(game){
     }
 }
 
+//Pegar todas as lives que estiverem ao vivo agora
+async function getLiveList(){
+    let width = 600;
+    let height = 250;
+    let objStreamers = [];
+    const url = await fetch(`${API_URL}/streams`, options);
+    const response = await url.json();
+
+    if(Array.isArray(response['data'])){
+        let arrayStreamers = response['data'];
+        for(let dados of arrayStreamers){
+            let thumbnail_url   = dados.thumbnail_url.replace('{width}',width).replace('{height}', height);
+            let Title           = dados.title;
+            let nameStreamer    = dados.user_name;
+            let game_name       = dados.game_name
+         
+            const url = await fetch(`${API_URL}/users?login=${nameStreamer}`, options);
+            const response = await url.json();
+            if(Array.isArray(response['data'])){
+                let arrayGetPicture = response['data'][0];
+                let picture = arrayGetPicture.profile_image_url 
+    
+    
+                objStreamers.push({
+                    picture: picture,
+                    thumbnail_url: thumbnail_url,
+                    title: Title,
+                    nameStreamer:nameStreamer,
+                    nameGame : game_name
+                })
+            }
+        }
+    }
+           
+
+   return objStreamers;
+    console.log(objStreamers);
+}
 
 
 //############################
@@ -211,12 +247,13 @@ router.get('/', async (req, res) => {
 router.get('/directory', async (req, res)=>{
     try {
         const streamer = await GetTopStreamers();
-        res.status(200).render('directory', {streamer});
+        const ListDeStreamers = await getLiveList();
+        res.status(200).render('directory',{streamer, ListDeStreamers});
       } catch (e) {
         console.log('Error: ' + e);
         res.status(500).render('error', { message: 'Ocorreu um erro' });
       }
-});
+})
   
 
 

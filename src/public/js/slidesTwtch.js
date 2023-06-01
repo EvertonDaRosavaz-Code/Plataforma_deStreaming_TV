@@ -241,7 +241,7 @@ async function init() {
 
      on:{
       init: function () {
-        console.log('Está no Slide 1');
+
         if(controllerPlayer.createPlayerTwitch1 == false){
           controllerPlayer.PlayerTwitch1({width:450, height:850, channel:players[0]});
           controllerPlayer.createPlayerTwitch1 = true;
@@ -251,22 +251,19 @@ async function init() {
             load[0].style.display = 'none'
           });
 
-        }
-
-        
+        } 
       },
 
-       slideChange: function (){
+       slideChange:  function () {
          let activeSlideIndex = this.activeIndex;
-         
-         
+
          switch (activeSlideIndex + 1){
              case 1:
                 controllerPlayer.PauseTwtch(1);
                break;
              case 2:
                 if(controllerPlayer.createPlayerTwitch2 == false){
-                  controllerPlayer.PlayerTwitch2({width:450, height:850, channel:players[1]});
+                  controllerPlayer.PlayerTwitch2({width:450, height:850, channel:players[1], layout:'video'});
                   controllerPlayer.createPlayerTwitch2 = true;
 
                   controllerPlayer.player2.addEventListener(Twitch.Player.READY, ()=>{
@@ -319,16 +316,15 @@ async function init() {
                 controllerPlayer.PauseTwtch(5);
          }
        }
+
+       
      }
      
    });
 
+
 }
 
-
- 
-
-
-
-
 init();
+
+

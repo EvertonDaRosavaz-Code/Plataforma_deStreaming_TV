@@ -277,7 +277,7 @@ body{
 }
 
 .conteinerLivesAoVivo .conteinerDeLives .card{
-/*  border: solid violet;*/
+ /*border: solid violet;*/
   width: 90%;
   height: 90%;
 }
@@ -295,9 +295,16 @@ body{
   width: 100%;
   object-fit: cover;
   border-radius: 10px;
+  cursor: pointer;
  }
 
-
+.conteinerLivesAoVivo .conteinerDeLives .card .card-img img:hover{
+  -webkit-box-shadow: -8px 7px 0px 0px rgba(106, 22, 232, 0.867);
+  -moz-box-shadow: -8px 7px 0px 0px rgba(106, 22, 232, 0.867);
+  box-shadow: -8px 7px 0px 0px rgba(106, 22, 232, 0.867);
+  transition: .2s ease-in-out;
+  transform: translate(5px, -5px);
+}
 
 
 .conteinerLivesAoVivo .conteinerDeLives .card .card-descri{

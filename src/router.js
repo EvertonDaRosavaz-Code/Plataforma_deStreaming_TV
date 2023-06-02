@@ -154,78 +154,6 @@ async function GetTopGames (){
     return ObjGame
 }
 
-//Pegar live por parametro nome
-async function getLives(game){
-    let width = 300;
-    let height = 300;
-    let PlayerStreamer = [];
-    const url  = await fetch(`${API_URL}/games?name=${game}`, options);
-    const response = await url.json();
-
-    let getId = response['data'][0].id
-    
-    const url_2 = await fetch(`${API_URL}/streams?game_id=${getId}`, options);
-    const response2 = await url_2.json();
-
-    if(Array.isArray(response2['data'])){
-        for(let data of response2['data']){
-            let thumbnail_url = data.thumbnail_url.replace('{width}', width).replace('{height}', height);
-            let nomeLive = data.title;
-            let nameStreamer  = data.user_name;
-            let name_game = data.game_name;
-
-            PlayerStreamer.push({
-                thumbnail_url:thumbnail_url,
-                nomeLive:nomeLive,
-                nameStreamer:nameStreamer,
-                name_game:name_game
-            })
-        }
-
-        return PlayerStreamer;
-    }
-}
-
-//Pegar todas as lives que estiverem ao vivo agora
-async function getLiveList(){
-    let width = 600;
-    let height = 250;
-    let objStreamers = [];
-    const url = await fetch(`${API_URL}/streams`, options);
-    const response = await url.json();
-
-    if(Array.isArray(response['data'])){
-        let arrayStreamers = response['data'];
-        for(let dados of arrayStreamers){
-            let thumbnail_url   = dados.thumbnail_url.replace('{width}',width).replace('{height}', height);
-            let Title           = dados.title;
-            let nameStreamer    = dados.user_name;
-            let game_name       = dados.game_name
-         
-            const url = await fetch(`${API_URL}/users?login=${nameStreamer}`, options);
-            const response = await url.json();
-            if(Array.isArray(response['data'])){
-                let arrayGetPicture = response['data'][0];
-                let picture = arrayGetPicture.profile_image_url 
-    
-    
-                objStreamers.push({
-                    picture: picture,
-                    thumbnail_url: thumbnail_url,
-                    title: Title,
-                    nameStreamer:nameStreamer,
-                    nameGame : game_name
-                })
-            }
-        }
-    }
-           
-
-   return objStreamers;
-    console.log(objStreamers);
-}
-
-
 //############################
 //Rotas:
 //Principal
@@ -243,45 +171,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-//Rota Diretorio
-router.get('/directory', async (req, res)=>{
-    try {
-        const streamer = await GetTopStreamers();
-        const ListDeStreamers = await getLiveList();
-        res.status(200).render('directory',{streamer, ListDeStreamers});
-      } catch (e) {
-        console.log('Error: ' + e);
-        res.status(500).render('error', { message: 'Ocorreu um erro' });
-      }
-})
-  
-
-
-
-
-
-//Rota de pesquisa
-router.get('/search', async (req, res) => {
-    try{
-        const nomeStreamer = req.query.nome;
-        const response = await SearchStreamer(nomeStreamer);
-        res.status(200).send(response);
-    }catch(e){
-        console.log('error ' + e);
-    }
-});
-  
-router.get('/directory/game/:namegame', async (req, res)=> {
-    let nameGame = req.params.namegame;
-    const streamer = await GetTopStreamers();
-    const getLive = await getLives(nameGame);
-    try {
-        //res.status(200).render('layoutGames', {streamer});
-       
-    } catch (e) {
-        //res.status(500).render('error', { message: 'Ocorreu um erro' });
-    }
-});
 
 router.get('/:name', async (req, res)=>{
     try {

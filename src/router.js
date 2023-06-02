@@ -86,13 +86,6 @@ async function GetTopStreamers () {
 }
 
 
-
-async function SearchStreamer(nomeStreamer) {
-    const response = await fetch(`${API_URL}/users?login=${nomeStreamer}`, options);
-    const data = await response.json();
-    return data;
-}
-
 //Pegar os top jogos mais jogados
 let ObjGame = [];
 const width = 160;
@@ -154,6 +147,7 @@ async function GetTopGames (){
     return ObjGame
 }
 
+
 //############################
 //Rotas:
 //Principal
@@ -174,11 +168,9 @@ router.get('/', async (req, res) => {
 
 router.get('/:name', async (req, res)=>{
     try {
+        let nome = req.params.name
         const streamer = await GetTopStreamers();
-        const TopGames = await GetTopGames();
-        res.status(200).render('layoutStreamer', {
-          streamer,
-      });
+        res.status(200).render('layoutStreamer', {streamer, nome});
       } catch (e) {
         //console.log('Error: ' + e);
         res.status(500).render('error', { message: 'Ocorreu um erro' });

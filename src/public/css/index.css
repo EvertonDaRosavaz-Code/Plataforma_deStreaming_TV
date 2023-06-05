@@ -157,10 +157,9 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-
   background-color: #0e0e1059;
 
-  
+ 
 }
 
 .c-loader {

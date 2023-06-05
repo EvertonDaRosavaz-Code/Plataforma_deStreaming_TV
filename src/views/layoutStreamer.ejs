@@ -15,13 +15,14 @@
        <!--Inicio da cabeçalho-->
        <nav>
         <div class="logo-site">
-            <img src="../img/analytics.png" alt="">
+            <a href="http://localhost:4001">
+                <img src="../img/analytics.png" alt="">
+            </a>
             <span>Streaming</span>
-            <a href="http://localhost:4001/directory">Procurar</a>
         </div>
         <div class="input-wrapper">
             <div>
-                <input type="text" autocomplete="on" id="ValueInput" maxlength="50">
+                <input type="text" autocomplete="on" id="ValueInput" maxlength="50" placeholder="Buscar Streamer">
                 <button id="BtnSearch">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -86,23 +87,25 @@
                                  newNome = nameGame.substring(0, 15) + '...';
                              }
                          %>
-                           <li>
-                                 <div class="conteinerAvatarStreamer">
-                                     <img src="<%= streamer.picture %>" alt="avatar-streamers">
-                                 </div>
-                             
-                                 <div class="conteinerDescriStreamer">
-                                     <span class="spanNameStreamer"><%= streamer.nome %></span>
-                                     <span class="spanNameGameStreamer" id="NameGameStreamer">
-                                         <%= newNome %>
-                                     </span>
-                                 </div>
-                             
-                                 <div class="conteinerDescriive">
-                                     <div class="bolinhaLive"></div>
-                                     <span class="numLive"><%= streamer.numEspectadore %></span>
-                                 </div>
-                           </li>
+                            <a href="<%= streamer.nome %>">
+                                <li>
+                                        <div class="conteinerAvatarStreamer">
+                                            <img src="<%= streamer.picture %>" alt="avatar-streamers">
+                                        </div>
+                                    
+                                        <div class="conteinerDescriStreamer">
+                                            <span class="spanNameStreamer"><%= streamer.nome %></span>
+                                            <span class="spanNameGameStreamer" id="NameGameStreamer">
+                                                <%= newNome %>
+                                            </span>
+                                        </div>
+                                    
+                                        <div class="conteinerDescriive">
+                                            <div class="bolinhaLive"></div>
+                                            <span class="numLive"><%= streamer.numEspectadore %></span>
+                                        </div>
+                                </li>
+                            </a>
                          <% }
                          }) %>
                          
@@ -111,7 +114,7 @@
 
                  <!--Este conteiner devera sumir se o usuario tiver algum streamer seguindo-->
                  <div class = "conteinerIfNotFallows" id="conteinerIfNotFallows">
-                     <h2>Siga para acompanhar seus Streamings favoritos !</h2>
+                     <h2>Siga para acompanhar seus Streamings favoritos em Twitch.com !</h2>
                      <img src="../svg/appreciation-animate.svg">
                  </div>
          </div>
@@ -123,13 +126,18 @@
          
  </section>
  <script src="/js/animation.js"></script>
+ <script src="/js/SearchStreamers.js"></script>
  <script>
     const player = new Twitch.Embed("conteinerDisplayPlayer", {
     channel:  "<%=nome%>",
     layout: "video-with-chat",
     height: "100%",
     width: "100%",
-  });
+  })
+
+  setTimeout(()=>{
+    player.setVolume(0.5)
+  },2000)
  </script>
 </body>
 </html>

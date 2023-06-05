@@ -120,7 +120,8 @@ nav{
     align-items: center;
     justify-content: center;
     font-size: 1.5vw;
-  }
+}
+
   
 .TaskList {
     border: solid;
@@ -165,6 +166,7 @@ nav{
   background-color: transparent;
   border: none;
 }
+
 
 
 .divMain {

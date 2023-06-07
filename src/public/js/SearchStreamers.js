@@ -1,3 +1,4 @@
+//Variaveis globais
 let BtnSearch           = document.getElementById('BtnSearch');
 let conteinerStreamers  = document.getElementById('conteinerStreamers');
 let TaskList            = document.getElementsByClassName('TaskList');
@@ -27,64 +28,81 @@ function SetLocalHistoric(value){
 
 }
 
+function removeLocalStorage(name){
+  let getChave = localStorage.getItem('historic');
+  let arrayItens = JSON.parse(getChave);
+  let newArray = arrayItens.filter(elemento => elemento !== name);
+
+  localStorage.setItem('historic', JSON.stringify(newArray))
+  
+}
+
+
+
+
+
 let ItensLocalStorage = localStorage.getItem('historic');
 let arrayItens        = JSON.parse(ItensLocalStorage)
 
 
-
-
-function increase(){
-  input.addEventListener('focus', () =>{
-    conteinerStreamers.style.height = '20vh'
-  });
+function handleInputBlur() {
+  conteinerStreamers.style.height = '0vh';
 }
 
-function to_decrase(){
-  input.addEventListener("blur", ()=>{
-    conteinerStreamers.style.height = '0vh'
-  });
+function handleMouseEnter() {
+  input.removeEventListener('blur', handleInputBlur);
 }
 
-increase();
+function handleMouseLeave() {
+  input.addEventListener('blur', handleInputBlur);
+}
 
+input.addEventListener('focus', ()=>{
+  conteinerStreamers.style.height = '20vh'
+});
+
+
+input.addEventListener('blur', handleInputBlur)
 
 
 for (let i = 0; i < arrayItens.length; i++) {
-    let item = arrayItens[i];
-    let div_1       = document.createElement('div');
-    let div_2       = document.createElement('div');
-    let link        = document.createElement('a');
-    let span        = document.createElement('span');
-    let img_exclud  = document.createElement('img');
-    let img_Reload  = document.createElement('img');
-    
-    //Classes
-    div_1.setAttribute('class', 'div_1')
-    div_2.setAttribute('class', 'div_2')
+  let item = arrayItens[i];
+  let divDad = document.createElement('div');
+    let a = document.createElement('a');
+      let imgOnload = document.createElement('img');
+      let span      = document.createElement('span');
+    let divChild = document.createElement('div')
+      let imgExclud = document.createElement('img');
+
+  //classes
+  divDad.setAttribute('class', 'divDad');
+  a.setAttribute('class', 'link');
+  divChild.setAttribute('class', 'divChild');
+
+  a.href = `${item}`;
+  span.textContent = item;
+  imgOnload.src = '../svg/reload.svg';
+  imgExclud.src = '../svg/cruz.svg';
+  a.appendChild(imgOnload);
+  a.appendChild(span);
+
+  divChild.appendChild(imgExclud)
+
+  divDad.appendChild(a);
+  divDad.appendChild(divChild);
 
 
-    img_Reload.src = '../svg/reload.svg';
-    img_Reload.alt = 'Reload';
-    span.textContent = item;
 
-    div_1.appendChild(img_Reload);
-    div_1.appendChild(span);
+  //Eventos
+  divDad.addEventListener('mouseenter',handleMouseEnter);
+  divDad.addEventListener('mouseleave',handleMouseLeave);
+  
+  imgExclud.addEventListener('click', function(){
+    removeLocalStorage(item);
+    divDad.remove()
+  });
 
-
-    img_exclud.src  = '../svg/cruz.svg'
-    img_exclud.alt  = 'cruz'
-    div_2.appendChild(img_exclud);
-
-    link.addEventListener('click', function() {
-      window.location.href = `http://localhost:4001/${item}`;
-      to_decrase();
-    });
-
-    link.appendChild(div_1);
-    link.appendChild(div_2);
-
-
-    conteinerStreamers.appendChild(link)
+  conteinerStreamers.appendChild(divDad)
 }
   
 

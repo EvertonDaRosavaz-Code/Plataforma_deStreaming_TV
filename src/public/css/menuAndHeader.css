@@ -124,7 +124,7 @@ nav{
 
   
 .TaskList {
-    border: solid;
+    border: solid red;
     margin: 0px;
     width: calc(30vw - 5px);
     border-color: var(--colorbackgroundConteinerSearch);
@@ -135,7 +135,7 @@ nav{
     border-bottom-right-radius: 5px;
     display: flex ;
     flex-direction: column;
-    height: 0vh; /* Altura definida*/
+    height: 0vh;  
 
     z-index: 99999;
     position: absolute;
@@ -143,68 +143,58 @@ nav{
     overflow-y: visible;
 }
 
-.TaskList a{
-  text-decoration: none;
-  border:  solid 1px red;
+.TaskList .divDad{
+  border: solid red 1px;
   display: flex;
   align-items: center;
   justify-content: start;
-  padding-left: 5px;
-  gap: 5px;
+}
+
+.TaskList .divDad .link {
+  border: solid blue 1px ;
+  width: 80%;
+  height: 99%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 20px;
   color: white;
-  cursor: pointer;
-  height: 3rem;
+  text-decoration: none;
+  font-size: 1vw;
 }
 
-.TaskList a .div_1{
-  border: solid red 1px;
-  width: 30%;
-  height: 95%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background-color: transparent;
+.TaskList .divDad .link:hover{
+  background:#53535F61;
 }
 
-
-
-.TaskList a .div_2{
-  border: solid blue 1px;
-  width: 70%;
-  height: 95%;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  padding-right: 30px;
-  background-color: transparent;
-}
-
-.TaskList a .div_2 img{
-  cursor: pointer;
+.TaskList .divDad .link img{
+  width: 2rem;
+  height: 2rem;
 }
 
 
-.TaskList a img{
-  height: 1.5rem;
-  width: 1.5rem;
-
-  
-}
-
-.TaskList a:hover
-{
-  background-color: rgb(53, 50, 50);
-}
-
-
-.TaskList a .img-historic{
+.TaskList .divDad .divChild{
+  border: solid violet 1px;
+  width: 20%;
+  height: 99%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-  border: none;
+}
+.TaskList .divDad .divChild img{
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+}
+.TaskList .divDad .divChild img:hover{
+  border: solid 1px #53535F61;
+  padding: 5px;
+  border-radius: 5px;
+  background:#53535F61;
 
 }
+
+
 
 
 

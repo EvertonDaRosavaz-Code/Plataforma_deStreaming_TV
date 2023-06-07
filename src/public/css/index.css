@@ -377,3 +377,12 @@ body{
     justify-content: center;
   }
 }
+
+
+.img_exclud{
+  background-color: red;
+}
+
+.img_exclud:hover{
+  background-color: blue;
+}

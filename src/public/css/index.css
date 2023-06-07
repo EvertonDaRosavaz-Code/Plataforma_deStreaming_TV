@@ -38,7 +38,6 @@ body{
 }
 
 
-
 .conteinerSlideShow{
  /* border: solid rebeccapurple;*/
   height: 45%;
@@ -216,6 +215,9 @@ body{
   color: white;
   padding-left: 10px;
 }
+.titulo a {
+  color: #9147FF;
+}
 
 .imagem{
   cursor: pointer;
@@ -258,7 +260,10 @@ body{
   height:auto;
   display: flex;
   flex-direction: column;
+}
 
+.conteinerLivesAoVivo a {
+  color: #9147FF;
 }
 
 .conteinerLivesAoVivo h2{

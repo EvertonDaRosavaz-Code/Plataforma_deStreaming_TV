@@ -65,33 +65,3 @@ document.getElementById('conteiner-img').onclick = ()=>{
 }
 
 
-const headerSeguindo = document.getElementById("headerSeguidos");
-// Adiciona evento onclick para exibir e ocultar a caixa de filtro
-
-headerSeguindo.onclick = (event) => {
-  event.stopPropagation(); // Previne o evento de se propagar para outros elementos
-  const caixaFiltro = `
-    <div class="caixaDeFiltro" id="caixaDeFiltro">
-      <input class="buttonFiltro" id="FiltroAlfabetico" type="button" value="Filtrar em ordem alfabética">
-      <input class="buttonFiltro" id="FiltroEspectadores" type="button" value="Filtrar em ordem de espectadores">
-    </div>
-  `;
-  const getChild = document.getElementById("caixaDeFiltro");
-
-  if (!getChild) {
-    // Se a caixa de filtro não existir, adiciona no headerSeguindo
-    headerSeguindo.insertAdjacentHTML("beforeend", caixaFiltro);
-
-    // Adiciona evento onclick para esconder a caixa de filtro caso o usuário clique em outro lugar da página
-    document.addEventListener("click", (event) => {
-      const caixaFiltro = document.getElementById("caixaDeFiltro");
-      if (caixaFiltro && !caixaFiltro.contains(event.target)) {
-        caixaFiltro.remove();
-      }
-    });
-  } else {
-    // Se a caixa de filtro existir, remove
-    getChild.remove();
-  }
-
-};

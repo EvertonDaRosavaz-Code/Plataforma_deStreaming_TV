@@ -44,11 +44,12 @@ async function RunPlayerTwitch() {
  for(let dados of players){
   const response =  await fetch(`https://api.twitch.tv/helix/users?login=${dados}`, options);
   const data = await response.json();
+
   descriGame.push(data['data'][0].description);
   picture.push(data['data'][0].profile_image_url)
  
  }
-let maxCarracter = 180
+ let maxCarracter = 180
  let newArrayDescri = descriGame.map((elemento)=>{
     if(elemento.length > maxCarracter){
       let newDescri = elemento.substring(0, maxCarracter)  + '...'
@@ -87,6 +88,7 @@ let maxCarracter = 180
   `
  }
 }
+
 
 const Arraycores = [
   "#FF5252", "#FF4081", "#E040FB", "#7C4DFF", "#536DFE", "#448AFF", "#40C4FF", "#18FFFF", "#64FFDA", "#69F0AE",

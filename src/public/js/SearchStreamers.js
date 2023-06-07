@@ -58,7 +58,18 @@ function handleMouseLeave() {
 }
 
 input.addEventListener('focus', ()=>{
-  conteinerStreamers.style.height = '20vh'
+  if(localStorage.getItem('historic')){
+    let getItem   = localStorage.getItem('historic')
+    let arrayItem = JSON.parse(getItem);
+    if(arrayItem.length == 0){
+      handleInputBlur();
+    }else{
+      conteinerStreamers.style.height = '20vh'
+    }
+  }else{
+    conteinerStreamers.style.height = '20vh'
+  }
+  
 });
 
 

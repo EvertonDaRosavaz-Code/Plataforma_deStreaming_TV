@@ -3,8 +3,8 @@ const express = require('express');
 const router = express.Router();
 const options = {
     headers: {
-        Authorization: `Bearer pqlbi0btqoxj9qrqo09f8k9qex7en4`,
-        'Client-Id' : `mo9ref2fe7vxqzhd9f35fmo1uor3jv`
+        Authorization: `Bearer `,
+        'Client-Id' : ``
     }
 }
 
